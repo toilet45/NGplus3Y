@@ -415,7 +415,7 @@ export const migrations = {
       player.metaAntimatter = new Decimal(10);
       player.quantums = 0
       player.dimensions.meta = Array.range(0, 8).map(tier => ({
-        amount: DC.D0,
+        amount: new Decimal(0),
         bought: 0,
         costBumps: 0
       }));
@@ -424,9 +424,9 @@ export const migrations = {
         studies: []
       };
       player.quarks = {
-        red: DC.D0,
-        green: DC.D0,
-        blue: DC.D0
+        red: new Decimal(0),
+        green: new Decimal(0),
+        blue: new Decimal(0)
       };
     }
   },
