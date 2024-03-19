@@ -37,6 +37,16 @@ export const tabs = [
         id: 2,
         hidable: true,
       },
+      {
+        key: "meta",
+        name: "Meta Dimensions",
+        hideAt: 2.6,
+        symbol: "?",
+        component: "MetaDimensionsTab",
+        condition: () => true,
+        id: 3,
+        hidable: true,
+      },
     ]
   },
   {
@@ -340,7 +350,7 @@ export const tabs = [
     name: "Reality",
     hideAt: 2.3,
     UIClass: "o-tab-btn--reality",
-    condition: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
+    condition: () => PlayerProgress.realityUnlocked() || TimeStudy.metaDims.isBought,
     id: 8,
     hidable: true,
     subtabs: [

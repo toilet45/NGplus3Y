@@ -15,7 +15,6 @@ function rebuyable(config) {
     formatCost: config.formatCost,
     purchaseCap: config.purchaseCap,
     reachedCap: () => player.dilation.rebuyables[config.id] >= config.purchaseCap,
-    pelleOnly: Boolean(config.pelleOnly),
     rebuyable: true
   };
 }
@@ -145,52 +144,57 @@ export const dilationUpgrades = {
     effect: () => Currency.tachyonParticles.value.div(20000),
     formatEffect: value => `${format(value, 2, 1)}/sec`
   },
-  dtGainPelle: rebuyable({
+  tpExpo: rebuyable({
     id: 11,
-    initialCost: 1e14,
-    increment: 100,
-    pelleOnly: true,
-    description: () => `${formatX(5)} Dilated Time gain`,
-    effect: bought => Decimal.pow(5, bought),
-    formatEffect: value => formatX(value, 2),
-    formatCost: value => format(value, 2),
-    purchaseCap: Number.MAX_VALUE
-  }),
-  galaxyMultiplier: rebuyable({
-    id: 12,
-    initialCost: 1e15,
-    increment: 1000,
-    pelleOnly: true,
-    description: "Multiply Tachyon Galaxies gained, applies after TG doubling upgrade",
-    effect: bought => bought + 1,
-    formatEffect: value => `${formatX(value, 2)} ➜ ${formatX(value + 1, 2)}`,
-    formatCost: value => format(value, 2),
-    purchaseCap: Number.MAX_VALUE
-  }),
-  tickspeedPower: rebuyable({
-    id: 13,
-    initialCost: 1e16,
+    initialCost: 1e8,
     increment: 1e4,
-    pelleOnly: true,
-    description: "Gain a power to Tickspeed",
-    effect: bought => 1 + bought * 0.03,
-    formatEffect: value => `${formatPow(value, 2, 2)} ➜ ${formatPow(value + 0.03, 2, 2)}`,
-    formatCost: value => format(value, 2),
+    description: "Increase Tachyon Particle Exponent",
+    effect: bought =>{
+      return (0.25 * bought)
+    },
+    formatEffect: value => `${formatPow(1.5 + value, 2, 2)} ➜ ${formatPow(1.5 + (value + 0.25), 2, 2)}`,
     purchaseCap: Number.MAX_VALUE
   }),
-  galaxyThresholdPelle: {
+  dtRep: {
+  id: 12,
+  cost: 1e20,
+  description: "Replicanti replicate speed is affected by Dilated Time",
+  effect: 1, //cant find formula
+  formatEffect: value => formatX(value,2,1)
+  },
+  eternityDT: {
+    id: 13,
+    cost: 1e25,
+    description: "Eternity and Dilated Time gain boost each other",
+    effect: 0.1,
+    formatEffect: value => `${formatX(player.eternities.pow(value),2,2)} DT and ${formatX(player.dilation.dilatedTime.pow(value), 2, 2)} Eternity gain`
+  },
+  meta1: {
     id: 14,
-    cost: 1e45,
-    pelleOnly: true,
-    description: "Apply a cube root to the Tachyon Galaxy threshold",
-    effect: 1 / 3
+    cost: 1e50,
+    description: "Meta Dimension Multiplier based on Tickspeed",
+    effect: 1,
+    formatEffect: value => formatX(value,2,1)
   },
-  flatDilationMult: {
+  meta2: {
     id: 15,
-    cost: 1e55,
-    pelleOnly: true,
-    description: () => `Gain more Dilated Time based on current EP`,
-    effect: () => 1e9 ** Math.min((Math.max(player.eternityPoints.log10() - 1500, 0) / 2500) ** 1.2, 1),
-    formatEffect: value => formatX(value, 2, 2)
+    cost: 1e60,
+    description: "Meta Dimension Shifts, Boosts, and per 10 multiplier are boosted by Dilated Times",
+    effect: 1,
+    formatEffect: value => formatX(value,2,1)
   },
+  meta3: {
+    id: 16,
+    cost: 1e80,
+    description: "Increase Meta Dimension effect exponent by 1",
+    effect: 1,
+    formatEffect: value => formatX(value,2,1)
+  },
+  meta4: {
+    id: 17,
+    cost: 1e100,
+    description: "Dilated Time gain is boosted by best Meta Antimatter, and unlock Mastery Studies",
+    effect: 1,
+    formatEffect: value => formatX(value,2,1)
+  }
 };

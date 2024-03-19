@@ -84,7 +84,7 @@ TimeStudy.timeDimension = function(tier) {
 /**
  * @type {DilationTimeStudyState}
  */
-TimeStudy.reality = DilationTimeStudyState.studies[6];
+TimeStudy.metaDims = DilationTimeStudyState.studies[6];
 
 TimeStudy.boughtDilationTS = function() {
   return player.dilation.studies.map(id => DilationTimeStudyState.studies[id]);

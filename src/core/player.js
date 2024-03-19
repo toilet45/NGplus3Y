@@ -10,6 +10,8 @@ import { GlyphTypes } from "./glyph-effects";
 // eslint-disable-next-line prefer-const
 window.player = {
   antimatter: DC.E1,
+  metaAntimatter: DC.E1,
+  metaDimensionBoosts: 0,
   dimensions: {
     antimatter: Array.range(0, 8).map(() => ({
       bought: 0,
@@ -27,6 +29,11 @@ window.player = {
       cost: [DC.D1, DC.D5, DC.E2, DC.E3, DC.E2350, DC.E2650, DC.E3000, DC.E3350][tier],
       amount: DC.D0,
       bought: 0
+    })),
+    meta: Array.range(0, 8).map(tier => ({
+      amount: DC.D0,
+      bought: 0,
+      costBumps: 0
     }))
   },
   buyUntil10: true,
@@ -359,7 +366,7 @@ window.player = {
     previousRuns: {}
   },
   IPMultPurchases: 0,
-  version: 24,
+  version: 25,
   infinityPower: DC.D1,
   postC4Tier: 0,
   eternityPoints: DC.D0,
@@ -394,6 +401,9 @@ window.player = {
       studies: "",
     }),
   },
+  masterystudy:{
+    studies: []
+  },
   eternityChalls: {},
   respec: false,
   eterc8ids: 50,
@@ -412,11 +422,16 @@ window.player = {
       2: 0,
       3: 0,
       11: 0,
-      12: 0,
-      13: 0,
     },
     lastEP: DC.DM1,
   },
+  quantums: 0,
+  quarks:{
+    red: DC.D0,
+    green: DC.D0,
+    blue: DC.D0
+  },
+  fundaments: DC.D0,
   realities: 0,
   partSimulatedReality: 0,
   reality: {
@@ -963,6 +978,10 @@ export const Player = {
 
   get dimensionMultDecrease() {
     return GameCache.dimensionMultDecrease.value;
+  },
+
+  get metaDimensionMultDecrease() {
+    return GameCache.metaDimensionMultDecrease.value;
   },
 
   get infinityGoal() {

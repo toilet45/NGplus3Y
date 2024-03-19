@@ -69,7 +69,7 @@ export const v = {
       description: value => `Unlock Reality with at most ${quantifyInt("Glyph", -value)} equipped.`,
       // This achievement has internally negated values since the check is always greater than
       values: [-5, -4, -3, -2, -1, 0],
-      condition: () => V.isRunning && TimeStudy.reality.isBought,
+      condition: () => V.isRunning && TimeStudy.metaDims.isBought,
       currentValue: () => -Glyphs.activeWithoutCompanion.length,
       formatRecord: x => (x >= -5 ? formatInt(-x) : "Not reached"),
       shardReduction: () => 0,
@@ -149,7 +149,7 @@ export const v = {
       description: value => `Unlock Reality with at most ${formatInt(-value)} Glyphs equipped for the entire Reality.`,
       // This achievement has internally negated values since the check is always greater than
       values: [1, 4, 7, 10, 13],
-      condition: () => V.isRunning && TimeStudy.reality.isBought,
+      condition: () => V.isRunning && TimeStudy.metaDims.isBought,
       currentValue: () => -player.requirementChecks.reality.maxGlyphs,
       formatRecord: x => formatInt(-x),
       shardReduction: () => 0,

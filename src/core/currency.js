@@ -245,6 +245,33 @@ Currency.antimatter = new class extends DecimalCurrency {
   }
 }();
 
+Currency.metaAntimatter = new class extends DecimalCurrency {
+  get value() { return player.metaAntimatter; }
+
+  set value(value) {
+    player.metaAntimatter = value;
+    //player.records.thisInfinity.maxAM = player.records.thisInfinity.maxAM.max(value);
+    //player.records.thisEternity.maxAM = player.records.thisEternity.maxAM.max(value);
+    //player.records.thisReality.maxAM = player.records.thisReality.maxAM.max(value);
+  }
+
+  add(amount) {
+    super.add(amount);
+    if (amount.gt(0)) {
+      //player.records.totalAntimatter = player.records.totalAntimatter.add(amount);
+      //player.requirementChecks.reality.noAM = false;
+    }
+  }
+
+  get productionPerSecond() {
+    return MetaDimension(1).productionPerRealSecond;
+  }
+
+  get startingValue() {
+    return new Decimal(10);
+  }
+}();
+
 Currency.matter = new class extends DecimalCurrency {
   get value() { return player.matter; }
   set value(value) {
@@ -386,6 +413,16 @@ Currency.dilatedTime = new class extends DecimalCurrency {
     player.dilation.dilatedTime = value;
     player.records.thisReality.maxDT = player.records.thisReality.maxDT.max(value);
   }
+}();
+
+Currency.quantums = new class extends NumberCurrency {
+  get value() { return player.quantums; }
+  set value(value) { player.quantums = value; }
+}();
+
+Currency.fundaments = new class extends DecimalCurrency {
+  get value() { return player.fundaments; }
+  set value(value) { player.fundaments = value; }
 }();
 
 Currency.realities = new class extends NumberCurrency {

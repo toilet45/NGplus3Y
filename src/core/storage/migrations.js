@@ -411,6 +411,24 @@ export const migrations = {
         player.reality.automator.constantSortOrder = [...definedConstants];
       }
     },
+    25: player =>{ //NG+3Y defaults start
+      player.metaAntimatter = new Decimal(10);
+      player.quantums = 0
+      player.dimensions.meta = Array.range(0, 8).map(tier => ({
+        amount: DC.D0,
+        bought: 0,
+        costBumps: 0
+      }));
+      player.metaDimBoosts = 0;
+      player.masterystudy = {
+        studies: []
+      };
+      player.quarks = {
+        red: DC.D0,
+        green: DC.D0,
+        blue: DC.D0
+      };
+    }
   },
 
   normalizeTimespans(player) {

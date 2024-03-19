@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     update() {
-      this.canReality = TimeStudy.reality.isBought;
+      this.canReality = TimeStudy.metaDims.isBought;
       this.isVisible = !isInCelestialReality();
       this.ecCount = EternityChallenges.completions;
       this.missingAchievements = Achievements.preReality.countWhere(a => !a.isUnlocked);

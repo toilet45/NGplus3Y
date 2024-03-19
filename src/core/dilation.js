@@ -57,14 +57,14 @@ export function startDilatedEternity(auto) {
 const DIL_UPG_NAMES = [
   null, "dtGain", "galaxyThreshold", "tachyonGain", "doubleGalaxies", "tdMultReplicanti",
   "ndMultDT", "ipMultDT", "timeStudySplit", "dilationPenalty", "ttGenerator",
-  "dtGainPelle", "galaxyMultiplier", "tickspeedPower", "galaxyThresholdPelle", "flatDilationMult"
+  "tpExpo", "dtRep", "eternityDT", "meta1", "meta2", "meta3", "meta4"
 ];
 
 export function buyDilationUpgrade(id, bulk = 1) {
   if (GameEnd.creditsEverClosed) return false;
   // Upgrades 1-3 are rebuyable, and can be automatically bought in bulk with a perk shop upgrade
   const upgrade = DilationUpgrade[DIL_UPG_NAMES[id]];
-  if (id > 3 && id < 11) {
+  if (id > 3 && id != 11) {
     if (player.dilation.upgrades.has(id)) return false;
     if (!Currency.dilatedTime.purchase(upgrade.cost)) return false;
     player.dilation.upgrades.add(id);
@@ -87,7 +87,7 @@ export function buyDilationUpgrade(id, bulk = 1) {
       player.dilation.totalTachyonGalaxies = 0;
     }
 
-    if (id === 3 && !Pelle.isDisabled("tpMults")) {
+    if (id === 3) {
       let retroactiveTPFactor = Effects.max(
         1,
         Perk.retroactiveTP1,
@@ -110,8 +110,7 @@ export function getTachyonGalaxyMult(thresholdUpgrade) {
   const thresholdMult = 3.65 * upgrade + 0.35;
   const glyphEffect = getAdjustedGlyphEffect("dilationgalaxyThreshold");
   const glyphReduction = glyphEffect === 0 ? 1 : glyphEffect;
-  const power = DilationUpgrade.galaxyThresholdPelle.canBeApplied
-    ? DilationUpgrade.galaxyThresholdPelle.effectValue : 1;
+  const power = 1;
   return (1 + thresholdMult * glyphReduction) ** power;
 }
 
@@ -119,7 +118,7 @@ export function getDilationGainPerSecond() {
   if (Pelle.isDoomed) {
     const tachyonEffect = Currency.tachyonParticles.value.pow(PelleRifts.paradox.milestones[1].effectOrDefault(1));
     return new Decimal(tachyonEffect)
-      .timesEffectsOf(DilationUpgrade.dtGain, DilationUpgrade.dtGainPelle, DilationUpgrade.flatDilationMult)
+      .timesEffectsOf(DilationUpgrade.dtGain, DilationUpgrade.flatDilationMult)
       .times(ShopPurchase.dilatedTimePurchases.currentMult ** 0.5)
       .times(Pelle.specialGlyphEffect.dilation).div(1e5);
   }
@@ -169,7 +168,7 @@ export function getBaseTP(antimatter, requireEternity) {
   const am = (isInCelestialReality() || Pelle.isDoomed)
     ? antimatter
     : Ra.unlocks.unlockDilationStartingTP.effectOrDefault(antimatter);
-  let baseTP = Decimal.pow(Decimal.log10(am) / 400, 1.5);
+  let baseTP = Decimal.pow(Decimal.log10(am) / 400, 1.5 + (DilationUpgrade.tpExpo.effectOrDefault(0)));
   if (Enslaved.isRunning) baseTP = baseTP.pow(Enslaved.tachyonNerf);
   return baseTP;
 }

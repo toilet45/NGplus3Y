@@ -25,7 +25,7 @@ export default {
       // Hide this before first reality since then it'll confuse the player,
       // and due to pre-selected first glyph might well be incorrect anyway.
       this.isVisible = !Pelle.isDoomed && PlayerProgress.realityUnlocked();
-      this.canPeek = TimeStudy.reality.isBought;
+      this.canPeek = TimeStudy.metaDims.isBought;
       if (gainedGlyphLevel().actualLevel !== this.level) {
         this.refreshGlyphs();
       }

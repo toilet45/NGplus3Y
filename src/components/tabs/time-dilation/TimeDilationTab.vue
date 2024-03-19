@@ -17,7 +17,7 @@ export default {
       baseGalaxies: 0,
       totalGalaxies: 0,
       tachyonGalaxyGain: 1,
-      hasPelleDilationUpgrades: false,
+      hasMetaUpgrades: false,
       galaxyTimeEstimate: "",
       maxDT: new Decimal(),
       toMaxTooltip: "",
@@ -29,7 +29,8 @@ export default {
       return [
         DilationUpgrade.dtGain,
         DilationUpgrade.galaxyThreshold,
-        DilationUpgrade.tachyonGain
+        DilationUpgrade.tachyonGain,
+        DilationUpgrade.tpExpo
       ];
     },
     upgrades() {
@@ -37,13 +38,25 @@ export default {
         [
           DilationUpgrade.doubleGalaxies,
           DilationUpgrade.tdMultReplicanti,
-          DilationUpgrade.ndMultDT
+          DilationUpgrade.ndMultDT,
+          DilationUpgrade.dtRep
         ],
         [
           DilationUpgrade.ipMultDT,
           DilationUpgrade.timeStudySplit,
-          DilationUpgrade.dilationPenalty
+          DilationUpgrade.dilationPenalty,
+          DilationUpgrade.eternityDT
         ],
+      ];
+    },
+    metaUpgrades(){
+      return [
+        [
+          DilationUpgrade.meta1,
+          DilationUpgrade.meta2,
+          DilationUpgrade.meta3,
+          DilationUpgrade.meta4
+        ]
       ];
     },
     // This might be negative due to rift drain, so we need to add "+" iff the value is positive. The actual
@@ -51,19 +64,6 @@ export default {
     dilatedTimeGainText() {
       const sign = this.dilatedTimeIncome.gte(0) ? "+" : "";
       return `${sign}${format(this.dilatedTimeIncome, 2, 1)}`;
-    },
-    pelleRebuyables() {
-      return [
-        DilationUpgrade.dtGainPelle,
-        DilationUpgrade.galaxyMultiplier,
-        DilationUpgrade.tickspeedPower
-      ];
-    },
-    pelleUpgrades() {
-      return [
-        DilationUpgrade.galaxyThresholdPelle,
-        DilationUpgrade.flatDilationMult
-      ];
     },
     ttGenerator() {
       return DilationUpgrade.ttGenerator;
@@ -75,13 +75,12 @@ export default {
     allRebuyables() {
       const upgradeRows = [];
       upgradeRows.push(this.rebuyables);
-      if (this.hasPelleDilationUpgrades) upgradeRows.push(this.pelleRebuyables);
       return upgradeRows;
     },
     allSingleUpgrades() {
       const upgradeRows = [];
       upgradeRows.push(...this.upgrades);
-      if (this.hasPelleDilationUpgrades) upgradeRows.push(this.pelleUpgrades);
+      if (this.hasMetaUpgrades) upgradeRows.push(this.metaUpgrades);
       upgradeRows.push([this.ttGenerator]);
       return upgradeRows;
     },
@@ -106,13 +105,12 @@ export default {
       this.galaxyThreshold.copyFrom(player.dilation.nextThreshold);
       this.baseGalaxies = player.dilation.baseTachyonGalaxies;
       this.totalGalaxies = player.dilation.totalTachyonGalaxies;
-      this.hasPelleDilationUpgrades = PelleRifts.paradox.milestones[0].canBeApplied;
+      this.hasMetaUpgrades = TimeStudy.metaDims.isBought;
       if (this.baseGalaxies < 500 && DilationUpgrade.doubleGalaxies.isBought) {
         this.tachyonGalaxyGain = DilationUpgrade.doubleGalaxies.effectValue;
       } else {
         this.tachyonGalaxyGain = 1;
       }
-      this.tachyonGalaxyGain *= DilationUpgrade.galaxyMultiplier.effectValue;
       this.maxDT.copyFrom(player.records.thisReality.maxDT);
 
       const estimateText = getDilationTimeEstimate(this.maxDT);

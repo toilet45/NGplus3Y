@@ -81,7 +81,7 @@ class RealityUpgradeState extends BitPurchasableMechanicState {
   }
 
   tryUnlock() {
-    const realityReached = PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought;
+    const realityReached = PlayerProgress.realityUnlocked() || TimeStudy.metaDims.isBought;
     if (!realityReached || this.isAvailableForPurchase || !this.config.checkRequirement()) return;
     player.reality.upgReqs |= (1 << this.id);
     GameUI.notify.reality(`You've unlocked a Reality Upgrade: ${this.config.name}`);

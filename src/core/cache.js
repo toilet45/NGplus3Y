@@ -67,10 +67,16 @@ export const GameCache = {
     EternityChallenge(6).reward
   )),
 
+  metaDimensionMultDecrease: new Lazy(() => 10),
+
   timeStudies: new Lazy(() => NormalTimeStudyState.studies
     .map(s => player.timestudy.studies.includes(s.id))),
 
+  masteryStudies: new Lazy(() => NormalMasteryStudyState.studies
+    .map(s => player.timestudy.studies.includes(s.id))),
+
   currentStudyTree: new Lazy(() => new TimeStudyTree(TimeStudyTree.currentStudies)),
+  currentMasteryStudyTree: new Lazy(() => new MasteryStudyTree(MasteryStudyTree.currentStudies)),
 
   achievementPeriod: new Lazy(() => TimeSpan.fromMinutes(30 - Effects.sum(
     Perk.achievementGroup1,
@@ -100,6 +106,13 @@ export const GameCache = {
   infinityDimensionCommonMultiplier: new Lazy(() => infinityDimensionCommonMultiplier()),
 
   timeDimensionCommonMultiplier: new Lazy(() => timeDimensionCommonMultiplier()),
+
+  metaDimensionCommonMultiplier: new Lazy(() => metaDimensionCommonMultiplier()),
+
+  // 0 will cause a crash if invoked; this way the tier can be used as an index
+  metaDimensionFinalMultipliers: Array.range(0, 9)
+    .map(tier => new Lazy(() => getMetaDimensionFinalMultiplierUncached(tier))),
+
 
   glyphInventorySpace: new Lazy(() => Glyphs.freeInventorySpace),
 

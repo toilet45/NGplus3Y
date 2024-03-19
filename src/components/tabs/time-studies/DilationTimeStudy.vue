@@ -35,10 +35,6 @@ export default {
           and ${formatInt(this.maxTT)}/${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)}
           total Time Theorems`;
       }
-      if (this.id === 6) {
-        const achRows = Perk.firstPerk.isBought ? "" : ` and ${formatInt(13)} rows of Achievements`;
-        return `Requirement: ${format("1e4000")} Eternity Points${achRows}`;
-      }
       return "";
     },
     theoremTimeEstimate() {

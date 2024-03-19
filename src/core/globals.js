@@ -61,6 +61,7 @@ export * from "./tickspeed";
 export * from "./dimensions/antimatter-dimension";
 export * from "./dimensions/infinity-dimension";
 export * from "./dimensions/time-dimension";
+export * from "./dimensions/meta-dimension";
 
 export * from "./time-studies";
 
@@ -88,5 +89,6 @@ export * from "./shop";
 export * from "./tabs";
 export * from "./tab-notifications";
 export * from "./speedrun";
+export * from "./meta-dimboost";
 
 export * from "./automator/script-templates";

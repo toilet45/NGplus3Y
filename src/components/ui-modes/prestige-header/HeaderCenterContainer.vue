@@ -35,7 +35,7 @@ export default {
       this.isModern = player.options.newUI;
       this.isDoomed = Pelle.isDoomed;
       this.antimatter.copyFrom(Currency.antimatter);
-      this.hasRealityButton = PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought;
+      this.hasRealityButton = PlayerProgress.realityUnlocked() || TimeStudy.metaDims.isBought;
       if (!this.hasRealityButton) this.antimatterPerSec.copyFrom(Currency.antimatter.productionPerSecond);
     },
   },

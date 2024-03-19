@@ -71,7 +71,7 @@ export default {
       return `${formatPercents(Math.min(((level - Math.floor(level))), 0.999), decimalPoints)}`;
     },
     update() {
-      this.hasRealityStudy = TimeStudy.reality.isBought;
+      this.hasRealityStudy = TimeStudy.metaDims.isBought;
       this.canReality = isRealityAvailable();
       this.showSpecialEffect = this.hasSpecialReward();
       if (!this.canReality) {

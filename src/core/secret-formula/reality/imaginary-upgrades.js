@@ -314,7 +314,7 @@ export const imaginaryUpgrades = [
     hasFailed: () => !Laitela.isRunning || Laitela.maxAllowedDimension !== 0 ||
       Glyphs.activeWithoutCompanion.length > 1,
     checkRequirement: () => Laitela.isRunning && Laitela.maxAllowedDimension === 0 &&
-      Glyphs.activeWithoutCompanion.length <= 1 && TimeStudy.reality.isBought,
+      Glyphs.activeWithoutCompanion.length <= 1 && TimeStudy.metaDims.isBought,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     canLock: true,
     lockEvent: "equip another non-Companion Glyph",

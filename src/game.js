@@ -716,7 +716,7 @@ function applyAutoUnlockPerks() {
     for (let dim = 5; dim <= 8; ++dim) TimeStudy.timeDimension(dim).purchase();
   }
   if (Perk.autounlockDilation3.canBeApplied) buyDilationUpgrade(DilationUpgrade.ttGenerator.id);
-  if (Perk.autounlockReality.canBeApplied) TimeStudy.reality.purchase(true);
+  if (Perk.autounlockReality.canBeApplied) TimeStudy.metaDims.purchase(true);
   applyEU2();
 }
 
@@ -842,8 +842,6 @@ function updateTachyonGalaxies() {
   player.dilation.totalTachyonGalaxies =
     Math.min(player.dilation.baseTachyonGalaxies * tachyonGalaxyMult, tachyonGalaxyThreshold) +
     Math.max(player.dilation.baseTachyonGalaxies * tachyonGalaxyMult - tachyonGalaxyThreshold, 0) / tachyonGalaxyMult;
-
-  player.dilation.totalTachyonGalaxies *= DilationUpgrade.galaxyMultiplier.effectValue;
 }
 
 export function getTTPerSecond() {

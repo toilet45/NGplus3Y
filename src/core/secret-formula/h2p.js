@@ -930,7 +930,7 @@ You get exactly ${formatInt(1)} Perk Point per Reality.
 <br>
 <b>Hotkey: Y</b> will try to perform a Reality reset.
 `,
-      isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
+      isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.metaDims.isBought,
       tags: ["rm", "machines", "glyph", "perk", "reset", "prestige", "endgame", "lategame"],
       tab: "reality/upgrades"
     }, {
@@ -991,7 +991,7 @@ of all those Glyphs and their various attributes. The summary will show the info
 slightly shorter descriptions, making it more suitable for sharing with others. This can be done for Glyph records
 in the Statistics page, your equipped Glyphs, and the Upcoming Glyph Selection this Reality.
 `,
-      isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
+      isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.metaDims.isBought,
       tags: ["reality", "sacrifice", "level", "endgame", "lategame"],
       tab: "reality/glyphs"
     }, {
@@ -1011,7 +1011,7 @@ The Perk nodes can have two different shapes - circular or diamond. The only dif
 diamond-shaped Perks give Automator Points in addition to their normal effect. Different nodes also have
 different colors, roughly indicating which part of the game they affect the most.
 `,
-      isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
+      isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.metaDims.isBought,
       tags: ["pp", "reality", "tree", "endgame", "lategame"],
       tab: "reality/perks"
     }, {
