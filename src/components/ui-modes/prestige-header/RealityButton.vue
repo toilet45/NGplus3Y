@@ -155,10 +155,10 @@ export default {
           <div>{{ formatGlyphLevel }}</div>
         </template>
         <template v-else-if="hasRealityStudy">
-          <div>Get {{ format("3.6e431") }} Meta Antimatter and have {{ formatInt(1) }} Eternity Challenge 14 Completion</div>
+          <div>Get {{ format("3.6e431", 1, 1) }} Meta Antimatter and have {{ formatInt(1) }} Eternity Challenge 14 Completion</div>
         </template>
         <template v-else>
-          <div>Get {{ format("3.6e431") }} Meta Antimatter and have {{ formatInt(1) }} Eternity Challenge 14 Completion to go Quantum</div>
+          <div>Get {{ format("3.6e431", 1, 1) }} Meta Antimatter and have {{ formatInt(1) }} Eternity Challenge 14 Completion to go Quantum</div>
         </template>
         <div
           v-if="canReality"

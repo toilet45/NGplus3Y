@@ -25,6 +25,7 @@ export default {
       isDoomed: false,
       antimatter: new Decimal(0),
       antimatterPerSec: new Decimal(0),
+      showQuarks: false
     };
   },
   methods: {
@@ -36,6 +37,7 @@ export default {
       this.isDoomed = Pelle.isDoomed;
       this.antimatter.copyFrom(Currency.antimatter);
       this.hasRealityButton = PlayerProgress.realityUnlocked() || TimeStudy.metaDims.isBought;
+      this.showQuarks = player.quantums > 0;
       if (!this.hasRealityButton) this.antimatterPerSec.copyFrom(Currency.antimatter.productionPerSecond);
     },
   },
@@ -52,7 +54,7 @@ export default {
       v-if="hasRealityButton"
       class="c-reality-container"
     >
-      <RealityCurrencyHeader />
+      <RealityCurrencyHeader v-if="showQuarks" />
       <ArmageddonButton
         v-if="isDoomed"
         :is-header="true"

@@ -342,7 +342,16 @@ export const tabs = [
         condition: () => PlayerProgress.dilationUnlocked() || PlayerProgress.realityUnlocked(),
         id: 3,
         hidable: true,
-      }
+      },
+      {
+        key: "masteryStudies",
+        name: "Mastery Studies",
+        symbol: "<i class='fas fa-book'></i>",
+        component: "MasteryStudiesTab",
+        condition: () => DilationUpgrade.meta4.isBought,
+        id: 4,
+        hidable: true,
+      },
     ],
   },
   {
@@ -350,7 +359,7 @@ export const tabs = [
     name: "Reality",
     hideAt: 2.3,
     UIClass: "o-tab-btn--reality",
-    condition: () => PlayerProgress.realityUnlocked() || TimeStudy.metaDims.isBought,
+    condition: () => false,
     id: 8,
     hidable: true,
     subtabs: [

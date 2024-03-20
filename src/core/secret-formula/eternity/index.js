@@ -5,6 +5,7 @@ import { eternityUpgrades } from "./eternity-upgrades";
 import { dilationTimeStudies } from "./time-studies/dilation-time-studies";
 import { ecTimeStudies } from "./time-studies/ec-time-studies";
 import { normalTimeStudies } from "./time-studies/normal-time-studies";
+import { masteryTimeStudies } from "./time-studies/mastery-studies";
 
 export const eternity = {
   dilation: dilationUpgrades,
@@ -12,7 +13,8 @@ export const eternity = {
   timeStudies: {
     dilation: dilationTimeStudies,
     ec: ecTimeStudies,
-    normal: normalTimeStudies
+    normal: normalTimeStudies,
+    mastery: masteryTimeStudies
   },
   upgrades: eternityUpgrades
 };

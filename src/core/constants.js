@@ -422,6 +422,17 @@ window.TS_REQUIREMENT_TYPE = {
   DIMENSION_PATH: 2,
 };
 
+window.MASTERY_STUDY_TYPE = {
+  NORMAL: 0,
+  ETERNITY_CHALLENGE: 1,
+  SPECIAL: 2 //for unlocks like Electrons or Big Rip
+};
+
+window.MS_REQUIREMENT_TYPE = {
+  AT_LEAST_ONE: 0,
+  ALL: 1
+};
+
 window.ALCHEMY_RESOURCE = {
   POWER: 0,
   INFINITY: 1,

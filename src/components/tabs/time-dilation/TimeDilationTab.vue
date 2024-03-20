@@ -80,7 +80,7 @@ export default {
     allSingleUpgrades() {
       const upgradeRows = [];
       upgradeRows.push(...this.upgrades);
-      if (this.hasMetaUpgrades) upgradeRows.push(this.metaUpgrades);
+      if (this.hasMetaUpgrades) upgradeRows.push(...this.metaUpgrades);
       upgradeRows.push([this.ttGenerator]);
       return upgradeRows;
     },

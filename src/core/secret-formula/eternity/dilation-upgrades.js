@@ -173,13 +173,13 @@ export const dilationUpgrades = {
     id: 14,
     cost: 1e50,
     description: "Meta Dimension Multiplier based on Tickspeed",
-    effect: 1,
+    effect: () => 1 + Math.log10(1 - Math.min(0, Tickspeed.current.log10())),
     formatEffect: value => formatX(value,2,1)
   },
   meta2: {
     id: 15,
     cost: 1e60,
-    description: "Meta Dimension Shifts, Boosts, and per 10 multiplier are boosted by Dilated Times",
+    description: "Meta Dimension Shifts, Boosts, and per 10 multiplier are boosted by Dilated Time",
     effect: 1,
     formatEffect: value => formatX(value,2,1)
   },

@@ -35,6 +35,9 @@ export default {
     },
     quickReset() {
       softReset(-1, true, true);
+    },
+    maxAll() {
+      maxAllMD();
     }
   }
 };
@@ -48,6 +51,12 @@ export default {
     <p>
     Your best Meta Antimatter is <span class="c-meta-dim-description__accent">{{ format(bestMA, 2, 1) }}</span>, raised to the power of <span class="c-meta-dim-description__accent">{{ formatPow(hasMeta3 ? 9 : 8, 2, 2)}}</span>, translated to <span class="c-meta-dim-description__accent">{{formatX(metaEffect, 2, 2) }}</span> extra power per Dimension Boost
     </p>
+    <PrimaryButton
+      class="o-primary-btn--buy-max"
+      @click="maxAll"
+    >
+      Max all (M)
+    </PrimaryButton>
     <div class="l-dimensions-container">
       <MetaDimensionRow
         v-for="tier in 8"

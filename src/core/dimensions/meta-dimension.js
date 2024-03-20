@@ -6,6 +6,7 @@ import { DimensionState } from "./dimension";
 // and invalidated every update.
 export function metaDimensionCommonMultiplier() {
   let multiplier = DC.D1;
+  multiplier = multiplier.timesEffectOf(DilationUpgrade.meta1);
   return multiplier;
 }
 

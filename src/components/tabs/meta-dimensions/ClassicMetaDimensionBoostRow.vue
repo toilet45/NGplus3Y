@@ -55,7 +55,7 @@ export default {
     },
     metaDimensionBoost(bulk) {
       if (!MetaDimBoost.requirement.isSatisfied || !MetaDimBoost.canBeBought) return;
-      manualRequestDimensionBoost(bulk);
+      manualRequestMetaDimensionBoost(bulk);
     }
   }
 };

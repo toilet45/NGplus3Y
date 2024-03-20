@@ -36,7 +36,7 @@ export class NormalMasteryStudyState extends MasteryStudyState {
 
   checkRequirement() {
     const check = req => (typeof req === "number"
-      ? TimeStudy(req).isBought
+      ? MasteryStudy(req).isBought
       : req());
     const currTree = GameCache.currentStudyTree.value;
     switch (this.config.reqType) {
@@ -44,11 +44,6 @@ export class NormalMasteryStudyState extends MasteryStudyState {
         return this.config.requirement.some(r => check(r));
       case MS_REQUIREMENT_TYPE.ALL:
         return this.config.requirement.every(r => check(r));
-      case MS_REQUIREMENT_TYPE.DIMENSION_PATH:
-        // In some cases of loading, sometimes the current tree might be undefined when this code is executed. The
-        // exact situations seem unclear, but it may be an interaction between the automator and offline progress
-        return this.config.requirement.every(r => check(r)) && currTree &&
-          currTree.currDimPathCount < currTree.allowedDimPathCount;
       default:
         throw Error(`Unrecognized MS requirement type: ${this.reqType}`);
     }
@@ -56,12 +51,9 @@ export class NormalMasteryStudyState extends MasteryStudyState {
 
   // This checks for and forbids buying studies due to being part of a set which can't normally be bought
   // together (eg. active/passive/idle and light/dark) unless the player has the requisite ST.
-  checkSetRequirement() {
-    return this.costsST() ? !Pelle.isDisabled("V") && (V.availableST >= this.STCost) : true;
-  }
 
   get canBeBought() {
-    return this.checkRequirement() && this.checkSetRequirement();
+    return this.checkRequirement();
   }
 
   get isEffectActive() {
@@ -71,7 +63,7 @@ export class NormalMasteryStudyState extends MasteryStudyState {
   purchase(auto = false) {
     if (this.isBought || !this.isAffordable || !this.canBeBought) return false;
     if (GameEnd.creditsEverClosed) return false;
-    player.timestudy.studies.push(this.id);
+    player.masterystudy.studies.push(this.id);
     Currency.timeTheorems.subtract(this.cost);
     GameCache.masteryStudies.invalidate();
     MasteryStudyTree.commitToGameState([MasteryStudy(this.id)]);
@@ -88,7 +80,7 @@ export class NormalMasteryStudyState extends MasteryStudyState {
 }
 
 NormalMasteryStudyState.studies = mapGameData(
-  GameDatabase.eternity.masteryStudies.normal,
+  GameDatabase.eternity.timeStudies.mastery,
   config => new NormalMasteryStudyState(config)
 );
 
@@ -105,5 +97,5 @@ export function MasteryStudy(id) {
  * @returns {NormalMasteryStudyState[]}
  */
 MasteryStudy.boughtNormalMS = function() {
-  return player.masterystudy.studies.map(id => TimeStudy(id));
+  return player.masterystudy.studies.map(id => MasteryStudy(id));
 };

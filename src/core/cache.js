@@ -73,7 +73,7 @@ export const GameCache = {
     .map(s => player.timestudy.studies.includes(s.id))),
 
   masteryStudies: new Lazy(() => NormalMasteryStudyState.studies
-    .map(s => player.timestudy.studies.includes(s.id))),
+    .map(s => player.masterystudy.studies.includes(s.id))),
 
   currentStudyTree: new Lazy(() => new TimeStudyTree(TimeStudyTree.currentStudies)),
   currentMasteryStudyTree: new Lazy(() => new MasteryStudyTree(MasteryStudyTree.currentStudies)),

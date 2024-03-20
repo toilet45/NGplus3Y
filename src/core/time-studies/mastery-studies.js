@@ -8,6 +8,14 @@ export function buyMasteryStudiesUntil(id, ec = -1) {
   return studyArray;
 }
 
+export function MSCostMult(){
+    let i = 1;
+    for (const study of MasteryStudy.boughtNormalMS()) {
+      i *= study.config.costMult;
+    }
+    return i;
+  }
+
 export function respecMasteryStudies(auto) {
   for (const study of MasteryStudy.boughtNormalMS()) {
     study.refund();
@@ -20,7 +28,7 @@ export function respecMasteryStudies(auto) {
     player.challenge.eternity.unlocked = 0;
   }
   if (!auto) {
-    Tab.eternity.studies.show();
+    Tab.eternity.masteryStudies.show();
   }
   GameCache.currentMasteryStudyTree.invalidate();
 }
@@ -32,15 +40,7 @@ export class MasteryStudyState extends GameMechanicState {
   }
 
   get cost() {
-    return this.config.cost * this.MSCostMult;
-  }
-
-  get MSCostMult(){
-    let i = 1;
-    for (const study of MasteryStudy.boughtNormalMS()) {
-      i *= study.config.costMult;
-    }
-    return i;
+    return this.config.cost * MSCostMult();
   }
 
   refund() {
@@ -48,7 +48,7 @@ export class MasteryStudyState extends GameMechanicState {
   }
 
   get isAffordable() {
-    return Currency.timeTheorems.gte(this.cost);
+    return Currency.timeTheorems.gte(this.cost * MSCostMult());
   }
 
   get canBeBought() {

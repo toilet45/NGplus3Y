@@ -21,7 +21,7 @@ const passiveIPMult = () => {
  *  @property {Number} id                   Numerical ID shown for each time study in code and in-game
  *  @property {Number} cost                 Amount of available time theorems required to purchase
  *  @property {Object[]} requirement   Array of Numbers or functions which are checked to determine purchasability
- *  @property {Number} reqType              Number specified by enum in TS_REQUIREMENT_TYPE for requirement behavior
+ *  @property {Number} reqType              Number specified by enum in MS_REQUIREMENT_TYPE for requirement behavior
  *  @property {function: @return String} description  Text to be shown in-game for the time study's effects
  *  @property {function: @return Number} effect       Numerical value for the effects of a study
  *  @property {String[]} cap     Hard-coded cap for studies which don't scale forever
@@ -35,10 +35,76 @@ export const masteryTimeStudies = [
     cost: 1,
     // All requirements of an empty array will always evaluate to true, so this study is always purchasable
     requirement: [],
-    reqType: TS_REQUIREMENT_TYPE.ALL,
+    reqType: MS_REQUIREMENT_TYPE.ALL,
     description: "[TBD]",
     effect: 1,
-    costMult: 1,
+    costMult: 5,
+    formatEffect: value => formatX(value, 2, 1)
+  },
+  {
+    id: 21,
+    cost: 1,
+    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    requirement: [11],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "[TBD]",
+    effect: 1,
+    costMult: 6,
+    formatEffect: value => formatX(value, 2, 1)
+  },
+  {
+    id: 22,
+    cost: 1,
+    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    requirement: [11],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "[TBD]",
+    effect: 1,
+    costMult: 6,
+    formatEffect: value => formatX(value, 2, 1)
+  },
+  {
+    id: 23,
+    cost: 1,
+    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    requirement: [11],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "[TBD]",
+    effect: 1,
+    costMult: 6,
+    formatEffect: value => formatX(value, 2, 1)
+  },
+  {
+    id: 24,
+    cost: 1,
+    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    requirement: [11],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "[TBD]",
+    effect: 1,
+    costMult: 6,
+    formatEffect: value => formatX(value, 2, 1)
+  },
+  {
+    id: 25,
+    cost: 1,
+    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    requirement: [11],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "[TBD]",
+    effect: 1,
+    costMult: 6,
+    formatEffect: value => formatX(value, 2, 1)
+  },
+  {
+    id: 26,
+    cost: 1,
+    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    requirement: [11],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "[TBD]",
+    effect: 1,
+    costMult: 6,
     formatEffect: value => formatX(value, 2, 1)
   },
 ];

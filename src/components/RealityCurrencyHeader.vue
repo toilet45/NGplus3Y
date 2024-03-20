@@ -18,7 +18,7 @@ export default {
       } else {
         const rm = Currency.realityMachines.value;
         this.currencyValue = formatMachines(rm, Currency.imaginaryMachines.value);
-        this.currencyName = pluralize("Reality Machine", rm);
+        this.currencyName = pluralize("Quark", rm);
       }
     },
     resourceClass() {
