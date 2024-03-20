@@ -283,6 +283,14 @@ window.player = {
     fullGameCompletions: 0,
     previousRunRealTime: 0,
     totalAntimatter: DC.E1,
+    thisQuantum: {
+      bestMA: DC.E1,
+      time: 0
+    },
+    bestQuantum: {
+      time: 0,
+      realTime: 0
+    },
     recentInfinities: Array.range(0, 10).map(() =>
       [Number.MAX_VALUE, Number.MAX_VALUE, DC.D1, DC.D1, ""]),
     recentEternities: Array.range(0, 10).map(() =>

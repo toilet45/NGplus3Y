@@ -675,6 +675,9 @@ body.t-s12 {
 .l-dimension-row-time-dim:nth-child(even) {
   background-color: var(--color-eternity--bg);
 }
+.l-dimension-row-meta-dim:nth-child(even) {
+  background-color: #499300A2
+}
 
 .c-infinity-dim-description__accent {
   color: var(--color-infinity);

@@ -141,7 +141,7 @@ export default {
         Currency.eternityPoints.exponent >= 4000 &&
         !TimeStudy.metaDims.isBought;
       if (this.isDilation) {
-        this.type = hasNewContent
+        this.type = false /*hasNewContent*/
           ? EP_BUTTON_DISPLAY_TYPE.DILATION_EXPLORE_NEW_CONTENT
           : EP_BUTTON_DISPLAY_TYPE.DILATION;
         this.currentTachyons.copyFrom(Currency.tachyonParticles);
@@ -149,7 +149,7 @@ export default {
         return;
       }
 
-      this.type = hasNewContent
+      this.type = false /*hasNewContent*/
         ? EP_BUTTON_DISPLAY_TYPE.NORMAL_EXPLORE_NEW_CONTENT
         : EP_BUTTON_DISPLAY_TYPE.NORMAL;
       this.currentEPRate.copyFrom(gainedEP.dividedBy(

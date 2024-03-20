@@ -428,6 +428,14 @@ export const migrations = {
         green: new Decimal(0),
         blue: new Decimal(0)
       };
+      player.records.thisQuantum = {
+        bestMA: new Decimal(10),
+        time: 0
+      };
+      player.records.bestQuantum = {
+        time: 0,
+        realTime: 0
+      };
     }
   },
 

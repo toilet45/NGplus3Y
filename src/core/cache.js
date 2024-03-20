@@ -138,3 +138,7 @@ EventHub.logic.on(GAME_EVENT.GLYPHS_CHANGED, () => {
 GameCache.antimatterDimensionFinalMultipliers.invalidate = function() {
   for (const x of this) x.invalidate();
 };
+
+GameCache.metaDimensionFinalMultipliers.invalidate = function() {
+  for (const x of this) x.invalidate();
+};

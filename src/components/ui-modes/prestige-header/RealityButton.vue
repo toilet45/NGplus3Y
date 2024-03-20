@@ -72,7 +72,7 @@ export default {
     },
     update() {
       this.hasRealityStudy = TimeStudy.metaDims.isBought;
-      this.canReality = isRealityAvailable();
+      this.canReality = false;//isRealityAvailable();
       this.showSpecialEffect = this.hasSpecialReward();
       if (!this.canReality) {
         this.shardsGained = 0;
@@ -149,16 +149,16 @@ export default {
       <div class="l-reality-button__contents">
         <template v-if="canReality">
           <div class="c-reality-button__header">
-            Make a new Reality
+            I need to go Quantum
           </div>
           <div>{{ formatMachinesGained }} {{ formatMachineStats }}</div>
           <div>{{ formatGlyphLevel }}</div>
         </template>
         <template v-else-if="hasRealityStudy">
-          <div>Get {{ format("1e4000") }} Eternity Points to unlock a new Reality</div>
+          <div>Get {{ format("3.6e431") }} Meta Antimatter and have {{ formatInt(1) }} Eternity Challenge 14 Completion</div>
         </template>
         <template v-else>
-          <div>Purchase the study in the Eternity tab to unlock a new Reality</div>
+          <div>Get {{ format("3.6e431") }} Meta Antimatter and have {{ formatInt(1) }} Eternity Challenge 14 Completion to go Quantum</div>
         </template>
         <div
           v-if="canReality"

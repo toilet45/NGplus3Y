@@ -12,13 +12,16 @@ export function metaDimensionCommonMultiplier() {
 export function getMetaDimensionFinalMultiplierUncached(tier) {
   if (tier < 1 || tier > 8) throw new Error(`Invalid Meta Dimension tier ${tier}`);
   let multiplier = DC.D1;
+  multiplier = applyMDMultipliers(multiplier, tier);
   return multiplier;
 }
 
 function applyMDMultipliers(mult, tier) {
-  let multiplier = DC.D1;//mult.times(GameCache.metaDimensionCommonMultiplier.value);
+  let multiplier = mult.times(GameCache.metaDimensionCommonMultiplier.value);
 
   let buy10Value = Math.floor(MetaDimension(tier).bought / 10);
+  multiplier = multiplier.times(Decimal.pow(MetaDimensions.buyTenMultiplier, buy10Value));
+  multiplier = multiplier.times(MetaDimBoost.multiplierToMDTier(tier));
 
 
   multiplier = multiplier.clampMin(1);
@@ -250,6 +253,7 @@ class MetaDimensionState extends DimensionState {
   }
 
   get isAvailableForPurchase() {
+    if (this.tier > MetaDimBoost.totalBoosts + 4) return false;
     const hasPrevTier = this.tier === 1 || MetaDimension(this.tier - 1).totalAmount.gt(0);
     return hasPrevTier;
   }

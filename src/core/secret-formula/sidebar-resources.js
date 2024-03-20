@@ -67,6 +67,14 @@ export const sidebarResources = [
   },
   {
     id: 9,
+    optionName: "Meta Antimatter",
+    isAvailable: () => TimeStudy.metaDims.isBought,
+    value: () => Currency.metaAntimatter.value,
+    formatValue: x => format(x, 2),
+    formatClass: "o-sidebar-currency--meta-antimatter",
+  },
+  /*{
+    id: 9,
     optionName: "Reality Machines",
     isAvailable: () => PlayerProgress.realityUnlocked(),
     value: () => Currency.realityMachines.value,
@@ -130,5 +138,5 @@ export const sidebarResources = [
     value: () => Currency.realityShards,
     formatValue: x => format(x, 2),
     formatClass: "o-sidebar-currency--pelle",
-  },
+  },*/
 ];

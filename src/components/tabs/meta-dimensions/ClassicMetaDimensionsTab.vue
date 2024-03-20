@@ -17,7 +17,10 @@ export default {
       currentSacrifice: new Decimal(0),
       hasRealityButton: false,
       multiplierText: "",
-      metaAntimatter: new Decimal(0)
+      metaAntimatter: new Decimal(0),
+      bestMA: new Decimal(0),
+      hasMeta3: false,
+      metaEffect: new Decimal(0)
     };
   },
   methods: {
@@ -26,6 +29,9 @@ export default {
       this.hasDimensionBoosts = player.metaDimensionBoosts > 0;
       this.isQuickResetAvailable = Player.isInAntimatterChallenge && Player.antimatterChallenge.isQuickResettable;
       this.buy10Mult.copyFrom(AntimatterDimensions.buyTenMultiplier);
+      this.bestMA.copyFrom(player.records.thisQuantum.bestMA);
+      this.hasMeta3 = DilationUpgrade.meta3.isBought;
+      this.metaEffect = (this.bestMA.minus(9)).pow(this.hasMeta3 ? 9 : 8);
     },
     quickReset() {
       softReset(-1, true, true);
@@ -36,9 +42,12 @@ export default {
 
 <template>
   <div class="l-old-ui-antimatter-dim-tab">
-    <span>You have {{ format(metaAntimatter, 2, 1) }} meta mntimatter</span>
-    <br>
-    <span>Your best Meta Antimatter is x, raised to the power to the power of y, translated to z extra power per dimension boost</span>
+    <p>
+    You have <span class="c-meta-dim-description__accent">{{ format(metaAntimatter, 2, 1) }}</span> meta antimatter
+    </p>
+    <p>
+    Your best Meta Antimatter is <span class="c-meta-dim-description__accent">{{ format(bestMA, 2, 1) }}</span>, raised to the power of <span class="c-meta-dim-description__accent">{{ formatPow(hasMeta3 ? 9 : 8, 2, 2)}}</span>, translated to <span class="c-meta-dim-description__accent">{{formatX(metaEffect, 2, 2) }}</span> extra power per Dimension Boost
+    </p>
     <div class="l-dimensions-container">
       <MetaDimensionRow
         v-for="tier in 8"

@@ -54,7 +54,7 @@ export class EternityAutobuyerState extends AutobuyerState {
   }
 
   get hasAdditionalModes() {
-    return RealityUpgrade(13).isBought;
+    return EternityMilestone.eternityABModes.isReached;
   }
 
   autoEternitiesAvailable(considerMilestoneReached) {

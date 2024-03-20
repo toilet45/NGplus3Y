@@ -2715,6 +2715,36 @@ br {
 
 /* #endregion c-time-dim-description__accent */
 
+/* #region c-time-dim-description__accent */
+
+.c-meta-dim-description__accent {
+  font-size: 3.5rem;
+  color: black;
+}
+
+.t-metro .c-meta-dim-description__accent,
+.t-s8 .c-meta-dim-description__accent {
+  text-shadow: 0 0 0.1rem rgba(0, 0, 0, 50%), -0.1rem 0.1rem 0.1rem black;
+}
+
+.t-dark .c-meta-dim-description__accent,
+.t-amoled .c-meta-dim-description__accent,
+.t-amoled-metro .c-meta-dim-description__accent,
+.t-s6 .c-meta-dim-description__accent,
+.t-s10 .c-meta-dim-description__accent,
+.t-s11 .c-meta-dim-description__accent {
+  color: #78F8AE;
+  text-shadow: 0 0 0.7rem #78F8AE;
+}
+
+.t-metro .c-meta-dim-description__accent,
+.t-dark-metro .c-meta-dim-description__accent,
+.t-s8 .c-meta-dim-description__accent {
+  color: #78F8AE;
+}
+
+/* #endregion c-time-dim-description__accent */
+
 /* #endregion Time Dimensions */
 
 /* #region Options */

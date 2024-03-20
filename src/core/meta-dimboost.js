@@ -14,7 +14,7 @@ class MetaDimBoostRequirement {
 
 export class MetaDimBoost {
   static get power() {
-    let boost = 2;
+    let boost = DC.D2;
     return boost;
   }
 
@@ -68,7 +68,7 @@ export class MetaDimBoost {
   static get unlockedByBoost() {
     if (MetaDimBoost.lockText !== null) return MetaDimBoost.lockText;
     const boosts = MetaDimBoost.purchasedBoosts;
-    const allMDUnlocked = true
+    const allMDUnlocked = false;
 
     let newUnlock = "";
     if (!allMDUnlocked && boosts < MetaDimBoost.maxDimensionsUnlockable - 4) {
@@ -105,18 +105,18 @@ export class MetaDimBoost {
 
 // eslint-disable-next-line max-params
 export function softMDBReset(tempBulk, forcedMDReset = false, forcedMAReset = false, enteringQuantumChallenge = false) {
-  if (Currency.antimatter.gt(Player.infinityLimit)) return;
+  //if (Currency.antimatter.gt(Player.infinityLimit)) return;
   const bulk = Math.min(tempBulk, MetaDimBoost.maxBoosts - player.metaDimensionBoosts);
   EventHub.dispatch(GAME_EVENT.META_DIMBOOST_BEFORE, bulk);
   player.metaDimensionBoosts = Math.max(0, player.metaDimensionBoosts + bulk);
-  resetChallengeStuff();
+  //resetChallengeStuff();
   const canKeepDimensions = false;
   if (forcedMDReset || !canKeepDimensions) {
     MetaDimensions.reset();
   }
   //skipResetsIfPossible(enteringQuantumChallenge);
   const canKeepMetaAntimatter = false
-  if (!forcedAMReset && canKeepMetaAntimatter) {
+  if (!forcedMDReset && canKeepMetaAntimatter) {
     Currency.metaAntimatter.bumpTo(Currency.metaAntimatter.startingValue);
   } else {
     Currency.metaAntimatter.reset();

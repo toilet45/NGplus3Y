@@ -483,6 +483,8 @@ export function gameLoop(passDiff, options = {}) {
   GameCache.antimatterDimensionFinalMultipliers.invalidate();
   GameCache.infinityDimensionCommonMultiplier.invalidate();
   GameCache.timeDimensionCommonMultiplier.invalidate();
+  GameCache.metaDimensionCommonMultiplier.invalidate();
+  GameCache.metaDimensionFinalMultipliers.invalidate();
   GameCache.totalIPMult.invalidate();
 
   const blackHoleDiff = realDiff;
@@ -560,7 +562,7 @@ export function gameLoop(passDiff, options = {}) {
 
   EternityChallenge(12).tryFail();
   Achievements._power.invalidate();
-
+  MetaDimensions.tick(diff);
   TimeDimensions.tick(diff);
   InfinityDimensions.tick(diff);
   AntimatterDimensions.tick(diff);

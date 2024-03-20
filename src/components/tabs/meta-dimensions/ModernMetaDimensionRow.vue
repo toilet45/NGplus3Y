@@ -87,9 +87,9 @@ export default {
     },
     buy() {
       if (this.howManyCanBuy === 1) {
-        buyOneDimension(this.tier);
+        buyOneMetaDimension(this.tier);
       } else {
-        buyAsManyAsYouCanBuy(this.tier);
+        buyAsManyMDAsYouCanBuy(this.tier);
       }
     },
     showCostTitle(value) {
@@ -114,7 +114,7 @@ export default {
 <template>
   <div
     v-show="showRow"
-    class="c-dimension-row l-dimension-row-antimatter-dim c-antimatter-dim-row l-dimension-single-row"
+    class="c-dimension-row l-dimension-row-meta-dim c-antimatter-dim-row l-dimension-single-row"
     :class="{ 'c-dim-row--not-reached': !isUnlocked }"
   >
     <GenericDimensionRowText

@@ -236,7 +236,7 @@ export function gainedEternities() {
   return Pelle.isDisabled("eternityMults")
     ? new Decimal(1)
     : new Decimal(getAdjustedGlyphEffect("timeetermult"))
-      .timesEffectsOf(RealityUpgrade(3), Achievement(113))
+      .timesEffectsOf(RealityUpgrade(3), Achievement(113)).times(DilationUpgrade.eternityDT.isBought ? Currency.dilatedTime.value.clampMin(1).pow(0.1): 1)
       .pow(AlchemyResource.eternity.effectValue);
 }
 

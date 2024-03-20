@@ -35,6 +35,7 @@ export class DimBoost {
         PelleRifts.recursion.milestones[0]
       ).powEffectsOf(InfinityUpgrade.dimboostMult.chargedEffect);
     if (GlyphAlteration.isAdded("effarig")) boost = boost.pow(getSecondaryGlyphEffect("effarigforgotten"));
+    boost = boost.times((player.records.thisQuantum.bestMA.minus(9)).pow(DilationUpgrade.meta3.isBought ? 9 : 8))
     return boost;
   }
 
@@ -180,9 +181,7 @@ export function softReset(tempBulk, forcedADReset = false, forcedAMReset = false
   EventHub.dispatch(GAME_EVENT.DIMBOOST_BEFORE, bulk);
   player.dimensionBoosts = Math.max(0, player.dimensionBoosts + bulk);
   resetChallengeStuff();
-  const canKeepDimensions = Pelle.isDoomed
-    ? PelleUpgrade.dimBoostResetsNothing.canBeApplied
-    : Perk.antimatterNoReset.canBeApplied;
+  const canKeepDimensions = EternityMilestone.dimNoReset.isReached;
   if (forcedADReset || !canKeepDimensions) {
     AntimatterDimensions.reset();
     player.sacrificed = DC.D0;

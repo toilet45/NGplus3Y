@@ -159,7 +159,7 @@ export const dilationUpgrades = {
   id: 12,
   cost: 1e20,
   description: "Replicanti replicate speed is affected by Dilated Time",
-  effect: 1, //cant find formula
+  effect: () => player.dilation.dilatedTime.clampMin(1).log10() / 9,
   formatEffect: value => formatX(value,2,1)
   },
   eternityDT: {

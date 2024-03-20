@@ -132,6 +132,7 @@ export function getDilationGainPerSecond() {
       Ra.unlocks.continuousTTBoost.effects.dilatedTime,
       Ra.unlocks.peakGamespeedDT
     );
+  dtRate = dtRate.times(DilationUpgrade.eternityDT.isBought ? Currency.eternities.value.clampMin(1).pow(0.1): 1);
   dtRate = dtRate.times(getAdjustedGlyphEffect("dilationDT"));
   dtRate = dtRate.times(ShopPurchase.dilatedTimePurchases.currentMult);
   dtRate = dtRate.times(

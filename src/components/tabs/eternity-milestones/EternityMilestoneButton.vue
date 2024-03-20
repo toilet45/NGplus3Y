@@ -11,6 +11,7 @@ export default {
     return {
       isReached: false,
       isLocked: false,
+      longNum: false
     };
   },
   computed: {
@@ -47,6 +48,7 @@ export default {
     update() {
       this.isLocked = this.isDoomed && this.config.givenByPelle !== undefined;
       this.isReached = this.milestone.isReached;
+      this.longNum = this.config.eternities >= 1e9;
     }
   }
 };
@@ -58,7 +60,7 @@ export default {
     class="l-eternity-milestone"
   >
     <span class="o-eternity-milestone__goal">
-      {{ quantifyInt("Eternity", eternities) }}:
+      {{ longNum ? `${format(eternities, 2, 2)} Eternities` : quantifyInt("Eternity", eternities) }}:
     </span>
     <button
       v-tooltip="activeCondition"

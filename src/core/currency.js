@@ -250,7 +250,7 @@ Currency.metaAntimatter = new class extends DecimalCurrency {
 
   set value(value) {
     player.metaAntimatter = value;
-    //player.records.thisInfinity.maxAM = player.records.thisInfinity.maxAM.max(value);
+    player.records.thisQuantum.bestMA = player.records.thisQuantum.bestMA.max(value);
     //player.records.thisEternity.maxAM = player.records.thisEternity.maxAM.max(value);
     //player.records.thisReality.maxAM = player.records.thisReality.maxAM.max(value);
   }

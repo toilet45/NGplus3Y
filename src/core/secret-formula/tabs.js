@@ -43,7 +43,7 @@ export const tabs = [
         hideAt: 2.6,
         symbol: "?",
         component: "MetaDimensionsTab",
-        condition: () => true,
+        condition: () => TimeStudy.metaDims.isBought,
         id: 3,
         hidable: true,
       },

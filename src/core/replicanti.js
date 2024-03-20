@@ -139,6 +139,7 @@ export function totalReplicantiSpeedMult(overCap) {
   const preCelestialEffects = Effects.product(
     TimeStudy(62),
     TimeStudy(213),
+    DilationUpgrade.dtRep,
     RealityUpgrade(2),
     RealityUpgrade(6),
     RealityUpgrade(23),
@@ -501,14 +502,18 @@ export const Replicanti = {
   },
   reset(force = false) {
     const unlocked = force ? false : EternityMilestone.unlockReplicanti.isReached;
+    const repChance = EternityMilestone.maxRepUpgrades.isUnlocked ? 1 : 0.01;
+    const repCost = EternityMilestone.maxRepUpgrades.isUnlocked ? new Decimal("1e1635") : new Decimal(1e150);
+    const interv = EternityMilestone.maxRepUpgrades.isUnlocked ? 1 : 1000;
+    const intervCost = EternityMilestone.maxRepUpgrades.isUnlocked ? new Decimal("1e800") : new Decimal(1e140);
     player.replicanti = {
       unl: unlocked,
       amount: unlocked ? DC.D1 : DC.D0,
       timer: 0,
-      chance: 0.01,
-      chanceCost: DC.E150,
-      interval: 1000,
-      intervalCost: DC.E140,
+      chance: repChance,
+      chanceCost: repCost,
+      interval: interv,
+      intervalCost: intervCost,
       boughtGalaxyCap: 0,
       galaxies: 0,
       galCost: DC.E170,

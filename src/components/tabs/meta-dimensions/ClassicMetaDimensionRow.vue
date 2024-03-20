@@ -80,6 +80,7 @@ export default {
   methods: {
     update() {
       const tier = this.tier;
+      if (tier > MetaDimBoost.maxDimensionsUnlockable) return;
       const dimension = MetaDimension(tier);
       this.isUnlocked = dimension.isAvailableForPurchase;
       this.isCapped = tier === 8 && Enslaved.isRunning && dimension.bought >= 1;

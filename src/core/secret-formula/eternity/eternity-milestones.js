@@ -185,5 +185,17 @@ export const eternityMilestones = {
         and the Eternity Autobuyer must be turned off.`
       : ""),
       pelleUseless: true
+  },
+  dimNoReset: {
+    eternities: 1e9,
+    reward: "Dimension Boosts and Galaxies no longer reset Antimatter Dimensions"
+  },
+  maxRepUpgrades:{
+    eternities: 2e10,
+    reward: "Start Eternities with 1 ms interval and 100% replicate chance Replicanti Upgrades"
+  },
+  eternityABModes:{
+    eternities: 1e13,
+    reward: "Unlock additional modes for the Eternity autobuyer"
   }
 };

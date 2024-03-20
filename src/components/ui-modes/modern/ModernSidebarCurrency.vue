@@ -161,6 +161,10 @@ export default {
   color: var(--color-dilation);
 }
 
+.o-sidebar-currency--meta-antimatter {
+  color: #78F8AE;
+}
+
 .o-sidebar-currency--reality {
   color: var(--color-reality);
 }
