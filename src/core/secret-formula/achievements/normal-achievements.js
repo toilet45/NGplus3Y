@@ -1015,90 +1015,88 @@ export const normalAchievements = [
   },
   {
     id: 141,
-    name: "Snap back to reality",
-    description: "Make a new Reality.",
-    checkRequirement: () => true,
-    checkEvent: GAME_EVENT.REALITY_RESET_BEFORE,
-    get reward() {
-      return `${formatX(4)} Infinity Point gain, and increase the multiplier for buying ${formatInt(10)}
-      Antimatter Dimensions by +${format(0.1, 0, 1)}.`;
-    },
-    effects: {
-      ipGain: 4,
-      buyTenMult: 0.1
-    }
+    name: "I'm so Meta",
+    description: "Unlock Meta Dimensions.",
+    checkRequirement: () => TimeStudy.metaDims.isBought,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
   },
   {
     id: 142,
-    name: "How does this work?",
-    description: "Unlock the automator.",
-    checkRequirement: () => Player.automatorUnlocked,
-    checkEvent: [GAME_EVENT.REALITY_RESET_AFTER, GAME_EVENT.REALITY_UPGRADE_BOUGHT, GAME_EVENT.PERK_BOUGHT,
-      GAME_EVENT.BLACK_HOLE_UNLOCKED],
-    get reward() { return `Dimension Boosts are ${formatPercents(0.5)} stronger.`; },
-    effect: 1.5,
+    name: "And still no 9th Dimension",
+    description: "Buy an 8th Meta Dimension",
+    checkRequirement: () => MetaDimension(8).amount.gt(0),
+    checkEvent: GAME_EVENT.ACHIEVEMENT_EVENT_OTHER,
+    get reward() { return `Meta Dimensions are ${formatPercents(0.1)} stronger, and start with ${formatInt(100)} Meta Antimatter on reset.`; },
+    effect: 1.1,
   },
   {
     id: 143,
-    name: "Yo dawg, I heard you liked reskins...",
-    get description() {
-      return `Have all your Eternities in your past ${formatInt(10)} Eternities be at least
-      ${format(Decimal.NUMBER_MAX_VALUE, 1, 0)} times higher Eternity Points than the previous one.`;
+    name: "In the grim darkness of the far endgame",
+    get description(){
+      return `Reach ${format("1e40000")} Eternity Points`;
     },
-    checkRequirement: () => {
-      if (player.records.recentEternities.some(i => i[0] === Number.MAX_VALUE)) return false;
-      const eternities = player.records.recentEternities.map(run => run[2]);
-      for (let i = 0; i < eternities.length - 1; i++) {
-        if (eternities[i].lt(eternities[i + 1].times(Decimal.NUMBER_MAX_VALUE))) return false;
-      }
-      return true;
+    checkRequirement: () => Currency.eternityPoints.exponent >= 40000,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    get reward () {
+      return `Multiply Dilated Time gain by ${formatX(2)}`;
     },
-    checkEvent: GAME_EVENT.ETERNITY_RESET_AFTER,
-    reward: "Galaxies no longer reset Dimension Boosts."
+    effect: 2
   },
   {
     id: 144,
-    name: "Is this an Interstellar reference?",
-    description: "Unlock the Black Hole.",
-    checkRequirement: () => BlackHole(1).isUnlocked,
-    checkEvent: GAME_EVENT.BLACK_HOLE_UNLOCKED,
+    name: "Meta Boosting to the max",
+    get description() {
+      return `Have ${formatInt(10)} Meta Dimension Boosts`;
+    },
+    checkRequirement: () => MetaDimBoost.totalBoosts >= 10,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    get reward(){
+      return `Meta Dimension Boosts are ${formatPercents(0.01)} stronger`
+    },
+    effect: 1.01
   },
   {
     id: 145,
-    name: "Are you sure these are the right way around?",
-    description: "Have either Black Hole interval smaller than its duration.",
-    checkRequirement: () => BlackHoles.list.some(bh => bh.interval < bh.duration),
-    checkEvent: GAME_EVENT.BLACK_HOLE_UPGRADE_BOUGHT,
-    get reward() { return `Black Hole intervals are ${formatPercents(0.1)} shorter.`; },
-    effect: 0.9
+    name: "The cap is a million not a trillion",
+    get description(){
+      return `Get ${format(1e12,2,2)} Eternities`;
+    },
+    checkRequirement: () => Currency.eternities.exponent >= 12,
+    checkEvent: GAME_EVENT.ETERNITY_RESET_AFTER,
+    get reward() { 
+      return `Improve Eternity Upgrade 2's formula`; 
+    },
   },
   {
     id: 146,
-    name: "Perks of living",
-    description: "Have all Perks bought.",
-    checkRequirement: () => player.reality.perks.size === Perks.all.length,
-    checkEvent: GAME_EVENT.PERK_BOUGHT,
-    get reward() { return `+${formatPercents(0.01)} Glyph rarity.`; },
-    effect: 1
+    name: "It will never be enough",
+    get description() {
+      return `Get ${format("1e100000")} Replicanti`;
+    },
+    checkRequirement: () => Currency.replicanti.exponent >= 1e5,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    reward: `Replicanti Galaxy autobuyer buys max`,
   },
   {
     id: 147,
-    name: "Master of Reality",
-    description: "Have all Reality upgrades bought.",
-    checkRequirement: () => RealityUpgrades.allBought,
-    checkEvent: GAME_EVENT.REALITY_UPGRADE_BOUGHT,
-    reward: "Unlock Teresa, the Celestial of Reality."
+    name: "GAS GAS GAS",
+    get description() {
+      return `Get ${formatInt(1e6)} Tickspeed Upgrades from Time Dimensions`;
+    },
+    checkRequirement: () => player.totalTickGained >= 1e6,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    get reward(){ 
+      return `Unlock Autobuyers for Time Dimensions and the ${formatX(5)} Eternity Point upgrades`;
+    }
   },
   {
     id: 148,
-    name: "Royal flush",
-    description: "Reality with one of each basic Glyph type.",
-    checkRequirement: () => BASIC_GLYPH_TYPES
-      .every(type => Glyphs.activeList.some(g => g.type === type)),
-    checkEvent: GAME_EVENT.REALITY_RESET_BEFORE,
-    reward: "Gained Glyph level is increased by number of distinct Glyph types equipped.",
-    effect: () => (new Set(Glyphs.activeWithoutCompanion.map(g => g.type))).size,
-    formatEffect: value => `+${formatInt(value)}`
+    name: "Universal harmony",
+    description: "Have at least 700 of Antimatter, Replicanti, and Tachyonic Galaxies",
+    checkRequirement: () => player.galaxies >= 700 && Replicanti.galaxies.total >= 700 && player.dilation.totalTachyonGalaxies >= 700,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
+    reward: `All Galaxies are 1% more powerful`,
+    effect: 1.01,
   },
   {
     id: 151,

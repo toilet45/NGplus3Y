@@ -2,7 +2,7 @@
 import { MASTERY_STUDY_TREE_LAYOUT_TYPE, MasteryStudyTreeLayout } from "./mastery-study-tree-layout";
 
 import SpecialMasteryStudy from "./SpecialMasteryStudy";
-import ECMasteryStudy from "./ECMasteryStudy";
+import ECTimeStudy from "../time-studies/ECTimeStudy";
 import NormalMasteryStudy from "./NormalMasteryStudy";
 import PrimaryButton from "@/components/PrimaryButton";
 import MasteryStudyConnection from "./MasteryStudyConnection";
@@ -12,7 +12,7 @@ export default {
   components: {
     PrimaryButton,
     NormalMasteryStudy,
-    ECMasteryStudy,
+    ECTimeStudy,
     MasteryStudyConnection,
     SpecialMasteryStudy
   },
@@ -108,7 +108,7 @@ export default {
     studyComponent(study) {
       switch (study.type) {
         case MASTERY_STUDY_TYPE.NORMAL: return NormalMasteryStudy;
-        case MASTERY_STUDY_TYPE.ETERNITY_CHALLENGE: return ECMasteryStudy;
+        case MASTERY_STUDY_TYPE.ETERNITY_CHALLENGE: return ECTimeStudy;
         /*case TIME_STUDY_TYPE.DILATION: return DilationTimeStudy;
         case TIME_STUDY_TYPE.TRIAD: return TriadTimeStudy;*/
       }

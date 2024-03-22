@@ -14,7 +14,10 @@ class MetaDimBoostRequirement {
 
 export class MetaDimBoost {
   static get power() {
-    let boost = DC.D2;
+    let boost = DC.D2.timesEffectsOf(
+      Achievement(144),
+      DilationUpgrade.meta2
+    );
     return boost;
   }
 

@@ -49,7 +49,7 @@ export class MasteryStudyTreeLayout {
     const wideRow = (...items) => new MasteryStudyRow(wideRowLayout, items, true);
 
     const MS = id => (MasteryStudy(id).isUnlocked ? MasteryStudy(id) : null);
-    const EC = id => MasteryStudy.eternityChallenge(id);
+    const EC = id => TimeStudy.eternityChallenge(id);
 
     /**
      * @type {MasteryStudyRow[]}
@@ -57,7 +57,9 @@ export class MasteryStudyTreeLayout {
     /* eslint-disable no-multi-spaces, space-in-parens, func-call-spacing */
     this.rows = [
       normalRow(                       null,   MS(11),   null                         ),
-      wideRow(MS(21),MS(22),MS(23),MS(24),MS(25),MS(26))
+      normalRow(                       MS(21),   MS(22),   MS(23)                         ),
+      wideRow(              MS(31),MS(32),MS(33),MS(34),MS(35),MS(36)                 ),
+      normalRow(                          EC(13),EC(14)                               )
           ];
     /* eslint-enable no-multi-spaces, space-in-parens, func-call-spacing */
 

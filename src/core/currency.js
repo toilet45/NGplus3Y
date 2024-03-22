@@ -268,6 +268,7 @@ Currency.metaAntimatter = new class extends DecimalCurrency {
   }
 
   get startingValue() {
+    if (Achievement(142).isUnlocked) return new Decimal(100);
     return new Decimal(10);
   }
 }();

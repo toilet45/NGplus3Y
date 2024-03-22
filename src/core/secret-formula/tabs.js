@@ -348,7 +348,7 @@ export const tabs = [
         name: "Mastery Studies",
         symbol: "<i class='fas fa-book'></i>",
         component: "MasteryStudiesTab",
-        condition: () => DilationUpgrade.meta4.isBought,
+        condition: () => true,//DilationUpgrade.meta4.isBought,
         id: 4,
         hidable: true,
       },

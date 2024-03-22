@@ -179,8 +179,8 @@ export const dilationUpgrades = {
   meta2: {
     id: 15,
     cost: 1e60,
-    description: "Meta Dimension Shifts, Boosts, and per 10 multiplier are boosted by Dilated Time",
-    effect: 1,
+    description: "Meta Dimension Boosts, and per 10 multiplier are boosted by Dilated Time",
+    effect: () => Math.min(Math.log10(Currency.dilatedTime.value.max(1e10).log10()) + 1, 3),
     formatEffect: value => formatX(value,2,1)
   },
   meta3: {
@@ -194,7 +194,7 @@ export const dilationUpgrades = {
     id: 17,
     cost: 1e100,
     description: "Dilated Time gain is boosted by best Meta Antimatter, and unlock Mastery Studies",
-    effect: 1,
+    effect: () => Math.max(1, Math.pow(player.records.thisQuantum.bestMA.log10(), 0.5)),
     formatEffect: value => formatX(value,2,1)
   }
 };

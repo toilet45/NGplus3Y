@@ -32,7 +32,7 @@ export class EPMultAutobuyerState extends AutobuyerState {
   }
 
   get isUnlocked() {
-    return RealityUpgrade(13).isBought && !Pelle.isDoomed;
+    return Achievement(147).isUnlocked;
   }
 
   get hasUnlimitedBulk() {

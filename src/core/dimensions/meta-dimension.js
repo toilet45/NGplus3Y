@@ -6,7 +6,9 @@ import { DimensionState } from "./dimension";
 // and invalidated every update.
 export function metaDimensionCommonMultiplier() {
   let multiplier = DC.D1;
-  multiplier = multiplier.timesEffectOf(DilationUpgrade.meta1);
+  multiplier = multiplier.timesEffectsOf(
+    DilationUpgrade.meta1,
+    Achievement(142));
   return multiplier;
 }
 
@@ -309,6 +311,9 @@ export const MetaDimensions = {
 
   get buyTenMultiplier() {
     let mult = DC.D2;
+    mult = mult.timesEffectOf(
+      DilationUpgrade.meta2
+    )
     return mult;
   },
 

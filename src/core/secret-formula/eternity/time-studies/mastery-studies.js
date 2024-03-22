@@ -32,79 +32,103 @@ const passiveIPMult = () => {
 export const masteryTimeStudies = [
   {
     id: 11,
-    cost: 1,
+    cost: 2e71,
     // All requirements of an empty array will always evaluate to true, so this study is always purchasable
     requirement: [],
     reqType: MS_REQUIREMENT_TYPE.ALL,
-    description: "[TBD]",
-    effect: 1,
-    costMult: 5,
-    formatEffect: value => formatX(value, 2, 1)
+    description: () => `Increase the IP multiplier rebuyable upgrade's base to ${formatX(2.2, 1, 1)}`,
+    effect: 2.2,
+    costMult: 1,
+    //formatEffect: value => formatX(value, 2, 1)
   },
   {
     id: 21,
-    cost: 1,
-    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    cost: 5e71,
     requirement: [11],
     reqType: MS_REQUIREMENT_TYPE.ALL,
-    description: "[TBD]",
-    effect: 1,
-    costMult: 6,
-    formatEffect: value => formatX(value, 2, 1)
+    description: "Remote Antimatter Galaxy scaling starts later based on Dimension Boosts",
+    effect: () => Math.floor(DimBoost.totalBoosts / 3000),
+    costMult: 2.5,
+    formatEffect: value => `+${formatInt(value)}`
   },
   {
     id: 22,
-    cost: 1,
-    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    cost: 5e71,
     requirement: [11],
     reqType: MS_REQUIREMENT_TYPE.ALL,
-    description: "[TBD]",
-    effect: 1,
-    costMult: 6,
-    formatEffect: value => formatX(value, 2, 1)
+    description: "Remote Antimatter Galaxy scaling starts later based on Tachyonic Galaxies",
+    effect: () => Math.floor(player.dilation.totalTachyonGalaxies / 7),
+    costMult: 2.5,
+    formatEffect: value => `+${formatInt(value)}`
   },
   {
     id: 23,
-    cost: 1,
-    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
+    cost: 5e71,
     requirement: [11],
     reqType: MS_REQUIREMENT_TYPE.ALL,
-    description: "[TBD]",
+    description: "Remote Antimatter Galaxy scaling starts later based on Replicanti Galaxies",
+    effect: () => Math.floor(Replicanti.galaxies.total / 4),
+    costMult: 2.5,
+    formatEffect: value => `+${formatInt(value)}`
+  },
+  {
+    id: 31,
+    cost: 2e71,
+    requirement: [21],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "Reduce Dimension Boost scaling by 1",
     effect: 1,
+    costMult: 6,
+  },
+  {
+    id: 32,
+    cost: 2e71,
+    requirement: [21],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "Dimension Boosts affect Meta Dimensions at a reduced rate",
+    effect: () => {
+      let x = Math.max(DimBoost.totalBoosts / 5e4 - 10, 1) > 10000 ? Math.pow(6 + Math.log10(Math.max(DimBoost.totalBoosts / 5e4 - 10, 1)), 4) : Math.max(DimBoost.totalBoosts / 5e4 - 10, 1);
+      return Math.pow(x, Math.sqrt(Math.max(DimBoost.totalBoosts / 1e5 - 5.5, 1)));
+    },
     costMult: 6,
     formatEffect: value => formatX(value, 2, 1)
   },
   {
-    id: 24,
-    cost: 1,
-    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
-    requirement: [11],
+    id: 33,
+    cost: 2e71,
+    requirement: [22],
     reqType: MS_REQUIREMENT_TYPE.ALL,
-    description: "[TBD]",
-    effect: 1,
+    description: "Meta Dimension Boosts boost Dilated Time gain",
+    effect: () => MetaDimBoost.totalBoosts + 1,
     costMult: 6,
     formatEffect: value => formatX(value, 2, 1)
   },
   {
-    id: 25,
-    cost: 1,
-    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
-    requirement: [11],
+    id: 34,
+    cost: 2e71,
+    requirement: [22],
     reqType: MS_REQUIREMENT_TYPE.ALL,
-    description: "[TBD]",
-    effect: 1,
+    description: "Antimatter Galaxies boost Tachyon Particle gain",
+    effect: () => player.galaxies / 100 + 1,
     costMult: 6,
     formatEffect: value => formatX(value, 2, 1)
   },
   {
-    id: 26,
-    cost: 1,
-    // All requirements of an empty array will always evaluate to true, so this study is always purchasable
-    requirement: [11],
+    id: 35,
+    cost: 2e71,
+    requirement: [23],
     reqType: MS_REQUIREMENT_TYPE.ALL,
-    description: "[TBD]",
+    description: "Uncap the Replicanti chance upgrade",
     effect: 1,
     costMult: 6,
-    formatEffect: value => formatX(value, 2, 1)
+  },
+  {
+    id: 36,
+    cost: 2e71,
+    requirement: [23],
+    reqType: MS_REQUIREMENT_TYPE.ALL,
+    description: "Move Remote Galaxy Scaling to 5000 Replicanti Galaxies",
+    effect: 1,
+    costMult: 6,
   },
 ];

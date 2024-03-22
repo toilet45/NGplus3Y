@@ -36,13 +36,18 @@ MasteryStudy.allConnections = (function() {
     [MS(11), MS(21)],
     [MS(11), MS(22)],
     [MS(11), MS(23)],
-    [MS(11), MS(24)],
-    [MS(11), MS(25)],
-    [MS(11), MS(26)],
-    /*[MS(21), EC(13)],
-    [MS(22), EC(13)],
-    [MS(25), EC(14)],
-    [MS(26), EC(14)],*/
+    [MS(21), MS(31)],
+    [MS(21), MS(32)],
+    [MS(22), MS(33)],
+    [MS(22), MS(34)],
+    [MS(23), MS(35)],
+    [MS(23), MS(36)],
+    [MS(31), EC(13)],
+    [MS(32), EC(13)],
+    [MS(33), EC(13)],
+    [MS(34), EC(14)],
+    [MS(35), EC(14)],
+    [MS(36), EC(14)],
   ].map(props => new MasteryStudyConnection(props[0], props[1], props[2]));
 
   return connections;

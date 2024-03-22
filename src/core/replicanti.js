@@ -345,7 +345,7 @@ export const ReplicantiUpgrade = {
 
     get cap() {
       // Chance never goes over 100%.
-      return 1;
+      return MasteryStudy(35).isBought ? Infinity : 1;
     }
 
     get isCapped() {

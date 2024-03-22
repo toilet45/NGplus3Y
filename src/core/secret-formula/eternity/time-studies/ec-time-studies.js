@@ -140,5 +140,29 @@ export const ecTimeStudies = [
       path: "Time Dimension",
       forbiddenStudies: [71, 72],
     }
+  },
+  {
+    id: 13,
+    cost: 1e80,
+    requirement: [31, 32, 33],
+    reqType: MS_REQUIREMENT_TYPE.AT_LEAST_ONE,
+    secondary: {
+      resource: "Dimension Boosts",
+      current: () => DimBoost.totalBoosts,
+      required: completions => new Decimal(728000 + ((3000 * completions)+ 1500 ) * completions),//728e3 + (tmp.ngp3l ? 6000 : (1500 + 3000 * comps)) * comps
+      formatValue: value => formatInt(value)
+    }
+  },
+  {
+    id: 14,
+    cost: 1e80,
+    requirement: [34, 35, 36],
+    reqType: MS_REQUIREMENT_TYPE.AT_LEAST_ONE,
+    secondary: {
+      resource: "Replicanti Chance",
+      current: () => Replicanti.chance,
+      required: completions => new Decimal(2.55e7 + ((4e6 + 2e6 * completions)) * completions),//new Decimal(9e5).times(Math.min(completions + 1, 4)),
+      formatValue: value => formatPercents(value.toNumber(),2)
+    }
   }
 ];

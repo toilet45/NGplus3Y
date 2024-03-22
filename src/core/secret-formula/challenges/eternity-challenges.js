@@ -205,5 +205,27 @@ export const eternityChallenges = [
       effect: completions => 1 - completions * 0.008,
       formatEffect: value => `x${formatPow(value, 3, 3)}`
     }
+  },
+  {
+    id: 13,
+    description: "TBD",
+    goal: DC.E1E15,
+    goalIncrease: DC.E1E15,
+    reward:{
+      description: "TBD",
+      effect: completions => 1 * completions,
+      formatEffect: value => formatX(value, 2, 2)
+    }
+  },
+  {
+    id: 14,
+    description: "TBD",
+    goal: DC.E1E15,
+    goalIncrease: DC.E1E15,
+    reward:{
+      description: "TBD",
+      effect: completions => 1 * completions,
+      formatEffect: value => formatX(value, 2, 2)
+    }
   }
 ];

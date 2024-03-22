@@ -30,12 +30,15 @@ export class DimBoost {
         TimeStudy(83),
         TimeStudy(231),
         Achievement(117),
-        Achievement(142),
         GlyphEffect.dimBoostPower,
         PelleRifts.recursion.milestones[0]
       ).powEffectsOf(InfinityUpgrade.dimboostMult.chargedEffect);
     if (GlyphAlteration.isAdded("effarig")) boost = boost.pow(getSecondaryGlyphEffect("effarigforgotten"));
-    boost = boost.times((player.records.thisQuantum.bestMA.minus(9)).pow(DilationUpgrade.meta3.isBought ? 9 : 8))
+    let a = DilationUpgrade.meta3.isBought ? 9 : 8;
+    let x = player.records.thisQuantum.bestMA.pow(a).max(1);
+    let l = x.log(2);
+    if (l > 1024) x = Decimal.pow(2,Math.pow(l * 32, 2/3));
+    boost = boost.times(x);
     return boost;
   }
 

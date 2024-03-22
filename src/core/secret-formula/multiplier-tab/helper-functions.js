@@ -27,7 +27,7 @@ export const MultiplierTabHelper = {
       TimeStudy(212),
       TimeStudy(232),
       Achievement(86),
-      Achievement(178),
+      Achievement(148),
       InfinityChallenge(5).reward,
       PelleUpgrade.galaxyPower,
       PelleRifts.decay.milestones[1]
