@@ -346,9 +346,9 @@ export const tabs = [
       {
         key: "masteryStudies",
         name: "Mastery Studies",
-        symbol: "<i class='fas fa-book'></i>",
+        symbol: "<i class='fa-solid fa-book-bookmark'></i>",
         component: "MasteryStudiesTab",
-        condition: () => true,//DilationUpgrade.meta4.isBought,
+        condition: () => DilationUpgrade.meta4.isBought,
         id: 4,
         hidable: true,
       },

@@ -16,22 +16,22 @@ export function MSCostMult(){
     return i;
   }
 
-export function respecMasteryStudies(auto) {
-  for (const study of MasteryStudy.boughtNormalMS()) {
-    study.refund();
+  export function respecMasteryStudies(auto) {
+    for (const study of MasteryStudy.boughtNormalMS()) {
+      study.refund();
+    }
+    player.masterystudy.studies = [];
+    GameCache.masteryStudies.invalidate();
+    const ecStudy = TimeStudy.eternityChallenge.current();
+    if (ecStudy > 12) {
+      ecStudy.refund();
+      player.challenge.eternity.unlocked = 0;
+    }
+    if (!auto) {
+      Tab.eternity.masteryStudies.show();
+    }
+    GameCache.currentMasteryStudyTree.invalidate();
   }
-  player.masterystudy.studies = [];
-  GameCache.masteryStudies.invalidate();
-  const ecStudy = MasteryStudy.eternityChallenge.current();
-  if (ecStudy !== undefined) {
-    ecStudy.refund();
-    player.challenge.eternity.unlocked = 0;
-  }
-  if (!auto) {
-    Tab.eternity.masteryStudies.show();
-  }
-  GameCache.currentMasteryStudyTree.invalidate();
-}
 
 export class MasteryStudyState extends GameMechanicState {
   constructor(config, type) {
@@ -48,7 +48,7 @@ export class MasteryStudyState extends GameMechanicState {
   }
 
   get isAffordable() {
-    return Currency.timeTheorems.gte(this.cost * MSCostMult());
+    return Currency.timeTheorems.gte(this.cost);
   }
 
   get canBeBought() {

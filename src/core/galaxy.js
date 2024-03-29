@@ -18,7 +18,8 @@ class GalaxyRequirement {
 
 export class Galaxy {
   static get remoteStart() {
-    return RealityUpgrade(21).effectOrDefault(800);
+    return 800 + Effects.sum(MasteryStudy(21), MasteryStudy(22), MasteryStudy(23));
+    //return RealityUpgrade(21).effectOrDefault(800);
   }
 
   static get requirement() {

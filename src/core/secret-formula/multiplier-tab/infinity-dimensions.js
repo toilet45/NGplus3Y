@@ -46,7 +46,7 @@ export const ID = {
         .map(id => getMult(id.tier))
         .reduce((x, y) => x.times(y), DC.D1);
     },
-    isActive: () => !EternityChallenge(2).isRunning && !EternityChallenge(10).isRunning,
+    isActive: () => !EternityChallenge(2).isRunning && !EternityChallenge(10).isRunning && !EternityChallenge(13).isRunning,
     icon: dim => MultiplierTabIcons.PURCHASE("ID", dim),
   },
   highestDim: {

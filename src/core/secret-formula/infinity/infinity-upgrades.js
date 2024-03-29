@@ -221,12 +221,12 @@ export const infinityUpgrades = {
     cost: () => InfinityUpgrade.ipMult.cost,
     checkRequirement: () => Achievement(41).isUnlocked,
     costCap: DC.E1E15,
-    costIncreaseThreshold: DC.E3E6,
+    costIncreaseThreshold: DC.E1E15,
     description: () => `Multiply Infinity Points from all sources by ${formatX(MasteryStudy(11).isBought ? 2.2 : 2, 2, 2)}`,
     // Normally the multiplier caps at e993k or so with 3300000 purchases, but if the cost is capped then we just give
     // an extra e7k to make the multiplier look nice
     effect: () => (MasteryStudy(11).isBought ? new Decimal(2.2) : DC.D2).pow(player.IPMultPurchases),
-    cap: () => Effarig.eternityCap ?? DC.E1E6,
+    cap: () => Decimal.pow10(1e300),//Effarig.eternityCap ?? DC.E1E6,
     formatEffect: value => formatX(value, 2, 2),
   }
 };

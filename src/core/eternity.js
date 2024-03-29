@@ -122,6 +122,11 @@ export function eternity(force, auto, specialConditions = {}) {
     player.respec = false;
   }
 
+  if (player.masteryRespec){
+    respecMasteryStudies(auto);
+    player.masteryRespec = false;
+  }
+
   Currency.infinityPoints.reset();
   InfinityDimensions.resetAmount();
   player.records.thisInfinity.bestIPmin = DC.D0;

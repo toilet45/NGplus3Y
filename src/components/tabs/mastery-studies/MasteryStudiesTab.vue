@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      respec: player.respec,
+      masteryRespec: player.masteryRespec,
       layoutType: MASTERY_STUDY_TREE_LAYOUT_TYPE.NORMAL,
       vLevel: 0,
       renderedStudyCount: 0,
@@ -52,13 +52,13 @@ export default {
     respecClassObject() {
       return {
         "o-primary-btn--subtab-option": true,
-        "o-primary-btn--respec-active": this.respec
+        "o-primary-btn--respec-active": this.masteryRespec
       };
     }
   },
   watch: {
-    respec(newValue) {
-      player.respec = newValue;
+    masteryRespec(newValue) {
+      player.masteryRespec = newValue;
     },
     vLevel() {
       // When vLevel changes, we recompute the study tree because of triad studies
@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     update() {
-      this.respec = player.respec;
+      this.masteryRespec = player.masteryRespec;
       this.layoutType = MASTERY_STUDY_TREE_LAYOUT_TYPE.current;
       this.vLevel = Ra.pets.v.level;
       this.isEnslaved = Enslaved.isRunning || Date.now() - this.delayTimer < 1000;
@@ -134,14 +134,14 @@ export default {
         @click="exportStudyTree"
       >
         Export tree
-      </PrimaryButton>
+      </PrimaryButton>-->
       <PrimaryButton
         :class="respecClassObject"
-        @click="respec = !respec"
+        @click="masteryRespec = !masteryRespec"
       >
         Respec Mastery Studies on next Eternity
       </PrimaryButton>
-      <PrimaryButton
+      <!--<PrimaryButton
         class="o-primary-btn--subtab-option"
         onclick="Modal.studyString.show({ id: -1 })"
       >

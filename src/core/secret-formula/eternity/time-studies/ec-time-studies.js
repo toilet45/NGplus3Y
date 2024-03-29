@@ -149,7 +149,7 @@ export const ecTimeStudies = [
     secondary: {
       resource: "Dimension Boosts",
       current: () => DimBoost.totalBoosts,
-      required: completions => new Decimal(728000 + ((3000 * completions)+ 1500 ) * completions),//728e3 + (tmp.ngp3l ? 6000 : (1500 + 3000 * comps)) * comps
+      required: completions => 728000 + ((3000 * completions)+ 1500 ) * completions,//728e3 + (tmp.ngp3l ? 6000 : (1500 + 3000 * comps)) * comps
       formatValue: value => formatInt(value)
     }
   },
@@ -160,9 +160,9 @@ export const ecTimeStudies = [
     reqType: MS_REQUIREMENT_TYPE.AT_LEAST_ONE,
     secondary: {
       resource: "Replicanti Chance",
-      current: () => Replicanti.chance,
-      required: completions => new Decimal(2.55e7 + ((4e6 + 2e6 * completions)) * completions),//new Decimal(9e5).times(Math.min(completions + 1, 4)),
-      formatValue: value => formatPercents(value.toNumber(),2)
+      current: () => Replicanti.chance * 100,
+      required: completions => 2.55e7 + ((4e6 + 2e6 * completions)) * completions,//new Decimal(9e5).times(Math.min(completions + 1, 4)),
+      formatValue: value => `${formatInt(value)}%`
     }
   }
 ];

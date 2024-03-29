@@ -188,7 +188,6 @@ export const dilationUpgrades = {
     cost: 1e80,
     description: "Increase Meta Dimension effect exponent by 1",
     effect: 1,
-    formatEffect: value => formatX(value,2,1)
   },
   meta4: {
     id: 17,

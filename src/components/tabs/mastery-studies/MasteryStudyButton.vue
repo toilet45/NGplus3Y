@@ -85,7 +85,7 @@ export default {
       return this.eternityChallengeRunning ? "o-time-study-eternity-challenge--running" : "";
     },
     config() {
-      return { ...this.study.config, formatCost: value => (value * this.MSMult >= 1e6 ? format(value* this.MSMult) : formatInt(value* this.MSMult)) };
+      return { ...this.study.config, formatCost: value => (value * this.MSMult >= 1e6 ? format(value* this.MSMult, 2, 2) : formatInt(value* this.MSMult)) };
     },
     showDefaultCostDisplay() {
       const costCond = (this.showCost);

@@ -60,7 +60,13 @@ export class MetaDimBoost {
     let amount = 20;
     const discount = 0;
     if (tier === 8) {
-      amount += Math.round((targetResets - 5) * (15 - discount));
+      let multiplier = 15
+      amount += Math.max(MetaDimBoost.purchasedBoosts - 4, 0) * multiplier;
+      let scaleStart = 15;
+      if (MetaDimBoost.purchasedBoosts >= scaleStart){
+        amount += 5 * (MetaDimBoost.purchasedBoosts - scaleStart);
+        multiplier += 5;
+      }
     }
 
     amount = Math.round(amount);

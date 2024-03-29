@@ -126,7 +126,7 @@ class InfinityDimensionState extends DimensionState {
 
   get productionPerSecond() {
     if (EternityChallenge(2).isRunning || EternityChallenge(10).isRunning ||
-      (Laitela.isRunning && this.tier > Laitela.maxAllowedDimension)) {
+      (Laitela.isRunning && this.tier > Laitela.maxAllowedDimension) || EternityChallenge(13).isRunning) {
       return DC.D0;
     }
     let production = this.amount;
@@ -184,7 +184,7 @@ class InfinityDimensionState extends DimensionState {
     const tier = this.tier;
     if (EternityChallenge(2).isRunning ||
       EternityChallenge(10).isRunning ||
-      (Laitela.isRunning && tier > Laitela.maxAllowedDimension)) {
+      (Laitela.isRunning && tier > Laitela.maxAllowedDimension) || EternityChallenge(13).isRunning) {
       return false;
     }
     return this.amount.gt(0);
@@ -363,7 +363,7 @@ export const InfinityDimensions = {
   canBuy() {
     return !EternityChallenge(2).isRunning &&
       !EternityChallenge(10).isRunning &&
-      (!EternityChallenge(8).isRunning || player.eterc8ids > 0);
+      (!EternityChallenge(8).isRunning || player.eterc8ids > 0) && !EternityChallenge(13).isRunning;
   },
 
   canAutobuy() {

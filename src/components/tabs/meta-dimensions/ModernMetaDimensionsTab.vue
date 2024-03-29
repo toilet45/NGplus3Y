@@ -3,6 +3,7 @@ import MetaDimensionRow from "./ModernMetaDimensionRow";
 import ModernMetaDimensionBoostRow from "./ModernMetaDimensionBoostRow.vue";
 import PrimaryButton from "@/components/PrimaryButton";
 import TickspeedRow from "@/components/tabs/antimatter-dimensions/TickspeedRow";
+import { Effects } from "../../../core/game-mechanics/effects";
 
 export default {
   name: "ModernMetaDimensionsTab",
@@ -22,7 +23,7 @@ export default {
       multiplierText: "",
       metaAntimatter: new Decimal(0),
       bestMA: new Decimal(0),
-      hasMeta3: false,
+      metaPower: 0,
       metaEffect: new Decimal(0)
     };
   },
@@ -48,8 +49,8 @@ export default {
       this.multiplierText = `Buy 10 Dimension purchase multiplier: ${formatX(this.buy10Mult, 2, 2)}`;
       this.metaAntimatter.copyFrom(Currency.metaAntimatter.value);
       this.bestMA.copyFrom(player.records.thisQuantum.bestMA);
-      this.hasMeta3 = DilationUpgrade.meta3.isBought;
-      this.metaEffect = (this.bestMA.minus(9)).pow(this.hasMeta3 ? 9 : 8);
+      this.metaPower = 8 + Effects.sum(DilationUpgrade.meta3, EternityChallenge(13).reward)
+      this.metaEffect = (this.bestMA.minus(9)).pow(this.metaPower);
     }
   }
 };
@@ -75,7 +76,7 @@ export default {
     You have <span class="c-meta-dim-description__accent">{{ format(metaAntimatter, 2, 1) }}</span> meta antimatter
     </p>
     <p>
-    Your best Meta Antimatter is <span class="c-meta-dim-description__accent">{{ format(bestMA, 2, 1) }}</span>, raised to the power of <span class="c-meta-dim-description__accent">{{ formatPow(hasMeta3 ? 9 : 8, 2, 2)}}</span>, translated to <span class="c-meta-dim-description__accent">{{formatX(metaEffect, 2, 2) }}</span> extra power per Dimension Boost
+    Your best Meta Antimatter is <span class="c-meta-dim-description__accent">{{ format(bestMA, 2, 1) }}</span>, raised to the power of <span class="c-meta-dim-description__accent">{{ formatPow(metaPower, 2, 2)}}</span>, translated to <span class="c-meta-dim-description__accent">{{formatX(metaEffect, 2, 2) }}</span> extra power per Dimension Boost
     </p>
     <span>{{ multiplierText }}</span>
     <div class="l-dimensions-container">

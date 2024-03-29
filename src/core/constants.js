@@ -191,6 +191,9 @@ export const DC = deepFreeze({
   E1E8:                 new Decimal("1e100000000"),
   E1_5E12:              new Decimal("1e1500000000000"),
   E1E15:                new Decimal("1e1000000000000000"),
+  EC13_START:           new Decimal("1e38500000"),
+  EC14_START:           new Decimal("1e1595000"),
+  E800K:                new Decimal("1e800000")
 });
 
 window.AUTOBUYER_MODE = {

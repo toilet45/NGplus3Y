@@ -430,13 +430,18 @@ export const migrations = {
       };
       player.records.thisQuantum = {
         bestMA: new Decimal(10),
-        time: 0
-      };
-      player.records.bestQuantum = {
         time: 0,
         realTime: 0
       };
-    }
+      player.records.bestQuantum = {
+        time: 0,
+        realTime: 0,
+        bestMA: new Decimal(10)
+      };
+    },
+    25.1: player =>{
+      player.masteryRespec = false;
+    },
   },
 
   normalizeTimespans(player) {

@@ -208,23 +208,23 @@ export const eternityChallenges = [
   },
   {
     id: 13,
-    description: "TBD",
-    goal: DC.E1E15,
-    goalIncrease: DC.E1E15,
+    description: "You are trapped in Eternity Challenge 2 and Dimension Boosts are nullified.",
+    goal: DC.EC13_START,
+    goalIncrease: DC.E1E6,
     reward:{
-      description: "TBD",
-      effect: completions => 1 * completions,
-      formatEffect: value => formatX(value, 2, 2)
+      description: "Increase the exponent of meta-antimatter's effect",
+      effect: completions => completions / 5,
+      formatEffect: value => `+${format(value, 2, 2)}`
     }
   },
   {
     id: 14,
-    description: "TBD",
-    goal: DC.E1E15,
-    goalIncrease: DC.E1E15,
+    description: "You are trapped in Infinity Challenge 3, all Replicanti boosts (except to Infinity Dimensions), and Meta Antimatter are disabled. Free Tickspeed upgrades are 5 times as effective to the IC3 boost.",
+    goal: DC.EC14_START,
+    goalIncrease: DC.E800K,
     reward:{
-      description: "TBD",
-      effect: completions => 1 * completions,
+      description: "Free tickspeed upgrades boost the IC3 reward",
+      effect: completions => 4 * completions,
       formatEffect: value => formatX(value, 2, 2)
     }
   }

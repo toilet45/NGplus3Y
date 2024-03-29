@@ -127,7 +127,9 @@ export const masteryTimeStudies = [
     cost: 2e71,
     requirement: [23],
     reqType: MS_REQUIREMENT_TYPE.ALL,
-    description: "Move Remote Galaxy Scaling to 5000 Replicanti Galaxies",
+    get description() {
+      return `Weaken Distant Replicanti Galaxy scaling (${format(1e50,0,0)}^x -> ${format(1e40,0,0)}^x)`;
+    },
     effect: 1,
     costMult: 6,
   },

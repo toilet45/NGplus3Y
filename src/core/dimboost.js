@@ -14,7 +14,7 @@ class DimBoostRequirement {
 
 export class DimBoost {
   static get power() {
-    if (NormalChallenge(8).isRunning) {
+    if (NormalChallenge(8).isRunning || EternityChallenge(13).isRunning) {
       return DC.D1;
     }
 
@@ -34,8 +34,7 @@ export class DimBoost {
         PelleRifts.recursion.milestones[0]
       ).powEffectsOf(InfinityUpgrade.dimboostMult.chargedEffect);
     if (GlyphAlteration.isAdded("effarig")) boost = boost.pow(getSecondaryGlyphEffect("effarigforgotten"));
-    let a = DilationUpgrade.meta3.isBought ? 9 : 8;
-    let x = player.records.thisQuantum.bestMA.pow(a).max(1);
+    let x = player.records.thisQuantum.bestMA.pow(8 + Effects.sum(DilationUpgrade.meta3, EternityChallenge(13).reward)).max(1);
     let l = x.log(2);
     if (l > 1024) x = Decimal.pow(2,Math.pow(l * 32, 2/3));
     boost = boost.times(x);
@@ -55,6 +54,10 @@ export class DimBoost {
 
   static get canUnlockNewDimension() {
     return DimBoost.purchasedBoosts + 4 < DimBoost.maxDimensionsUnlockable;
+  }
+
+  static get supersonicStart(){
+    return 560000;
   }
 
   static get maxBoosts() {
@@ -106,7 +109,8 @@ export class DimBoost {
     let amount = 20;
     const discount = Effects.sum(
       TimeStudy(211),
-      TimeStudy(222)
+      TimeStudy(222),
+      MasteryStudy(31)
     );
     if (tier === 6 && NormalChallenge(10).isRunning) {
       amount += Math.round((targetResets - 3) * (20 - discount));
@@ -115,6 +119,15 @@ export class DimBoost {
     }
     if (EternityChallenge(5).isRunning) {
       amount += Math.pow(targetResets - 1, 3) + targetResets - 1;
+    }
+
+    if (DimBoost.purchasedBoosts > DimBoost.supersonicStart) {
+      let multInc = 4;
+      let mult = 15;
+      let increased = Math.ceil((targetResets - DimBoost.supersonicStart + 1) / 4e4);
+      let offset = (targetResets - DimBoost.supersonicStart) % 4e4 + 1;
+      amount += (increased * (increased * 2e4 - 2e4 + offset)) * multInc;
+      mult += multInc * increased;
     }
 
     amount -= Effects.sum(InfinityUpgrade.resetBoost);

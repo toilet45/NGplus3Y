@@ -48,7 +48,10 @@ export const shortcuts = [
     name: "Max all",
     keys: ["m"],
     type: "bindRepeatableHotkey",
-    function: () => maxAll(),
+    function: () => {
+      maxAll();
+      maxAllMD();
+    },
     visible: true
   }, {
     name: "Dimensional Sacrifice",

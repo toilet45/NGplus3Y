@@ -66,7 +66,7 @@ export default {
     />
     <HowToPlay :style="hideIfMatoFullscreen" />
     <TimeTheoremShop
-      v-if="view.subtab === 'studies'"
+      v-if="view.subtab === 'studies' || view.subtab === 'masteryStudies'"
       class="l-time-studies-tab__tt-shop"
     />
     <ModernSidebar

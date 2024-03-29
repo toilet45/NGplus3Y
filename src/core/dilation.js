@@ -128,6 +128,8 @@ export function getDilationGainPerSecond() {
       Achievement(132),
       Achievement(137),
       Achievement(143),
+      DilationUpgrade.meta4,
+      MasteryStudy(33),
       RealityUpgrade(1),
       AlchemyResource.dilation,
       Ra.unlocks.continuousTTBoost.effects.dilatedTime,
@@ -152,7 +154,8 @@ export function tachyonGainMultiplier() {
     Achievement(132),
     RealityUpgrade(4),
     RealityUpgrade(8),
-    RealityUpgrade(15)
+    RealityUpgrade(15),
+    MasteryStudy(34),
   ).pow(pow);
 }
 

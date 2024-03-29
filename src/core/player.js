@@ -285,11 +285,13 @@ window.player = {
     totalAntimatter: DC.E1,
     thisQuantum: {
       bestMA: DC.E1,
-      time: 0
+      time: 0,
+      realTime: 0
     },
     bestQuantum: {
       time: 0,
-      realTime: 0
+      realTime: 0,
+      bestMA: DC.E1,
     },
     recentInfinities: Array.range(0, 10).map(() =>
       [Number.MAX_VALUE, Number.MAX_VALUE, DC.D1, DC.D1, ""]),
@@ -414,6 +416,7 @@ window.player = {
   },
   eternityChalls: {},
   respec: false,
+  masteryRespec: false,
   eterc8ids: 50,
   eterc8repl: 40,
   dilation: {

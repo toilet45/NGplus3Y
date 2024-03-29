@@ -210,7 +210,7 @@ export const FreeTickspeed = {
     if (Enslaved.has(ENSLAVED_UNLOCKS.FREE_TICKSPEED_SOFTCAP)) {
       softcap += 100000;
     }
-    return softcap;
+    return Infinity;
   },
 
   fromShards(shards) {

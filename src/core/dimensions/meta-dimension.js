@@ -8,7 +8,8 @@ export function metaDimensionCommonMultiplier() {
   let multiplier = DC.D1;
   multiplier = multiplier.timesEffectsOf(
     DilationUpgrade.meta1,
-    Achievement(142));
+    Achievement(142),
+    MasteryStudy(32));
   return multiplier;
 }
 
@@ -94,6 +95,7 @@ function buyUntilTen(tier) {
 }
 
 export function maxAllMD() {
+  if (!TimeStudy.metaDims.isBought) return;
   for (let tier = 1; tier < 9; tier++) {
     buyMaxMetaDimension(tier);
   }
@@ -149,7 +151,10 @@ class MetaDimensionState extends DimensionState {
       baseCost: this._baseCost,
       baseIncrease: this._baseCostMultiplier,
       costScale: Player.metaDimensionMultDecrease,
-      scalingCostThreshold: Number.MAX_VALUE
+      get purchasesBeforeScaling (){
+        //console.log(this.baseCost, this.baseIncrease);
+        return Math.ceil(Decimal.div(new Decimal("1e900"), this.baseCost).log(this.baseIncrease) / 10);
+      }
     });
   }
 

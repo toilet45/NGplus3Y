@@ -11,9 +11,13 @@ export const eternityUpgrades = {
   idMultEternities: {
     id: 2,
     cost: 10,
-    description: () => `Infinity Dimension multiplier based on Eternities
-      ((x/${formatInt(200)})^log4(${formatInt(2)}x), softcap at ${format(1e5)} Eternities)`,
+    description: () => {
+      return Achievement(145).isUnlocked ? `Infinity Dimension multiplier based on Eternities (10^(log(x)^4.75))`: `Infinity Dimension multiplier based on Eternities ((x/${formatInt(200)})^log4(${formatInt(2)}x), softcap at ${format(1e5)} Eternities)`},
     effect() {
+      if (Achievement(145).isUnlocked){
+        return Decimal.pow(10, Math.pow(Decimal.log10(Currency.eternities.value.clampMin(1)), 4.75)).clampMin(1)
+      }
+      else{
       const log4 = Math.log4;
       const eterPreCap = Currency.eternities.value.clampMax(1e5).toNumber();
       const base = eterPreCap / 200 + 1;
@@ -24,6 +28,7 @@ export const eternityUpgrades = {
       const mult2 = eterPostCap.times(2).plus(1).log(Math.E) / log4;
       const multPostCap = mult1.times(mult2).clampMin(1);
       return multPostCap.times(multPreCap);
+      }
     },
     formatEffect: value => formatX(value, 2, 1)
   },

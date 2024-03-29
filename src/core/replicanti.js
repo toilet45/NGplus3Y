@@ -428,11 +428,12 @@ export const ReplicantiUpgrade = {
     set baseCost(value) { player.replicanti.galCost = value; }
 
     get distantRGStart() {
-      return 100 + Effects.sum(GlyphSacrifice.replication);
+      return 400 + Effects.sum(GlyphSacrifice.replication);
     }
 
     get remoteRGStart() {
-      return 1000 + Effects.sum(GlyphSacrifice.replication);
+      let x = 1000 + Effects.sum(GlyphSacrifice.replication);
+      return x;
     }
 
     get costIncrease() {
@@ -441,7 +442,7 @@ export const ReplicantiUpgrade = {
         ? DC.E2.pow(galaxies).times(DC.E2)
         : DC.E5.pow(galaxies).times(DC.E25);
       if (galaxies >= this.distantRGStart) {
-        increase = increase.times(DC.E50.pow(galaxies - this.distantRGStart + 5));
+        increase = increase.times((MasteryStudy(36).isBought ? new Decimal(1e40) : DC.E50).pow(galaxies - this.distantRGStart + 5));
       }
       if (galaxies >= this.remoteRGStart) {
         increase = increase.times(DC.E5.pow(Math.pow(galaxies - this.remoteRGStart + 1, 2)));
@@ -502,10 +503,10 @@ export const Replicanti = {
   },
   reset(force = false) {
     const unlocked = force ? false : EternityMilestone.unlockReplicanti.isReached;
-    const repChance = EternityMilestone.maxRepUpgrades.isUnlocked ? 1 : 0.01;
-    const repCost = EternityMilestone.maxRepUpgrades.isUnlocked ? new Decimal("1e1635") : new Decimal(1e150);
-    const interv = EternityMilestone.maxRepUpgrades.isUnlocked ? 1 : 1000;
-    const intervCost = EternityMilestone.maxRepUpgrades.isUnlocked ? new Decimal("1e800") : new Decimal(1e140);
+    const repChance = EternityMilestone.maxRepUpgrades.isReached ? 1 : 0.01;
+    const repCost = EternityMilestone.maxRepUpgrades.isReached ? new Decimal("1e1635") : new Decimal(1e150);
+    const interv = EternityMilestone.maxRepUpgrades.isReached ? 1 : 1000;
+    const intervCost = EternityMilestone.maxRepUpgrades.isReached ? new Decimal("1e800") : new Decimal(1e140);
     player.replicanti = {
       unl: unlocked,
       amount: unlocked ? DC.D1 : DC.D0,

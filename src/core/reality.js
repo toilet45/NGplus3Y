@@ -137,7 +137,8 @@ export function simulatedRealityCount(advancePartSimCounters) {
  * process, if applicable. Auto sacrifice is never triggered.
  */
 export function requestManualReality() {
-  if (GlyphSelection.active || !isRealityAvailable()) return;
+  return;
+  /*if (GlyphSelection.active || !isRealityAvailable()) return;
   if (GameEnd.creditsEverClosed) return;
   if (player.options.confirmations.glyphSelection || ui.view.shiftDown) {
     Modal.reality.show();
@@ -148,7 +149,7 @@ export function requestManualReality() {
       { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
     return;
   }
-  startManualReality(false);
+  startManualReality(false);*/
 }
 
 export function startManualReality(sacrifice, glyphID) {
