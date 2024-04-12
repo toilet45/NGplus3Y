@@ -12,7 +12,9 @@ export function antimatterDimensionCommonMultiplier() {
   multiplier = multiplier.times(ShopPurchase.allDimPurchases.currentMult);
 
   if (!EternityChallenge(9).isRunning) {
-    multiplier = multiplier.times(Currency.infinityPower.value.pow(InfinityDimensions.powerConversionRate).max(1));
+    let x = Currency.infinityPower.value.log10() * InfinityDimensions.powerConversionRate;
+    if (x > 10) x = Math.pow(x * 200 - 1e3, 1/3)
+    multiplier = multiplier.times(Decimal.pow10(x));
   }
   multiplier = multiplier.timesEffectsOf(
     BreakInfinityUpgrade.totalAMMult,
